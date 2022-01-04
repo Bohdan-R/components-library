@@ -7,8 +7,6 @@ import styles from './CostList.module.scss';
 function CostList() {
     const { costs } = useAppSelector(state => state.costReducer);
     const { categories } = useAppSelector(state => state.categoryReducer);
-    const selectItems: string[] = [];
-    categories.map(({ category }) => selectItems.push(category));
 
     return (
         <div className={styles.container}>
@@ -17,7 +15,7 @@ function CostList() {
             </div>
             <ul>
                 {costs.map(cost => (
-                    <CostItem key={cost.id} cost={cost} selectItems={selectItems} />
+                    <CostItem key={cost.id} cost={cost} selectItems={categories} />
                 ))}
             </ul>
         </div>

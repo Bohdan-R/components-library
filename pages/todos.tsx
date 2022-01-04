@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import DragAndDrop from '../components/DragAndDrop';
+import DragAndDropBoard from '../components/DragAndDropBoard';
 
 function Todos() {
     return (
         <div style={{ margin: 20 }}>
-            <DragAndDrop />
+            <DragAndDropBoard />
         </div>
     );
 }

@@ -1,7 +1,9 @@
 import React from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 import { BtnVariant, Colors, SizeExtended, BtnType } from '../../interfaces/types';
+
+const cx = classNames.bind(styles);
 
 type RootComponent = 'button' | 'a';
 
@@ -40,10 +42,17 @@ function Button<T>({
         styles[variant],
         className,
     );
+
+    const combineClassesDisabled = classNames(
+        styles.button,
+        styles.disabled,
+        styles[size],
+        styles[variant],
+    );
     return (
         <RootComponent
             type={type}
-            className={combineClasses}
+            className={disabled === false ? combineClasses : combineClassesDisabled}
             disabled={disabled}
             onClick={/* onClick ? () => onClick() : null */ onClick}
             {...rest}
