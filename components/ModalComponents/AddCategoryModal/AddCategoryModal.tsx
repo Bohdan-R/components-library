@@ -31,7 +31,7 @@ function AddCategoryModal<T>({
                     onSubmit={(e: React.FormEvent<HTMLFormElement>) => submitFunc(e)}
                 >
                     <InputField
-                        color="pink"
+                        color="blue"
                         size="medium"
                         label="New category"
                         type="text"
@@ -40,7 +40,7 @@ function AddCategoryModal<T>({
                         onChange={onChangeFunc}
                     />
                     <Button
-                        color="pink"
+                        color="blue"
                         size="medium"
                         variant="contained"
                         type="submit"

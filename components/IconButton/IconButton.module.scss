@@ -33,26 +33,36 @@
         background-color: $color-iconBg-hover;
     }
 
-    /* &.close {
+    &.close {
         &:hover {
             background-color: $color-iconBg-hover;
         }
     }
     &.edit {
         &:hover {
-            background-color: $color-iconBg-hover;
+            background-color: #bbdefb;
         }
     }
     &.delete {
         &:hover {
-            background-color: $color-iconBg-hover;
+            background-color: #ffcdd2;
         }
     }
     &.add {
         &:hover {
+            background-color: #ccff90;
+        }
+    }
+    &.confirm {
+        &:hover {
+            background-color: #ccff90;
+        }
+    }
+    &.cancel {
+        &:hover {
             background-color: $color-iconBg-hover;
         }
-    } */
+    }
 }
 
 
@@ -89,6 +99,11 @@
     &.confirm {
         .btn:hover & {
             color: $color-confirm-icon;
+        }
+    }
+    &.cancel {
+        .btn:hover & {
+            color: $color-close-icon;
         }
     }
 

@@ -1,42 +1,35 @@
 @import '../../styles/colors';
 
 .item {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    margin-bottom: 30px;
-    padding: 20px;
+}
 
-    border-radius: 5px;
-    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.15);
-    transition: 250ms;
+.itemContent {
+    position: relative;
+    width: calc(100% / 4);
+    
+    padding: 10px 15px; 
 
-    &:hover {
-        box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.2);
+    &:last-child {
+        border-right: none;
+    }
+
+    .item:nth-child(even) & {
+        background-color: #f5f5f5;
     }
 }
 
-.content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.title {
+.decoration {
     position: absolute;
-    top: -10px;
-    left: 0;
-    font-size: 12px;
-    
+    top: 10%;
+    right: 0;
+    width: 2px;
+    height: 80%;
+    background-color: #e0e0e0;
 }
 
-.btnWrap {
+.btnBox {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 80px;
+    max-width: 85px;
 }

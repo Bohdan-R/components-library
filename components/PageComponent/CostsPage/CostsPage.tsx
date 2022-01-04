@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import shortid from 'shortid';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { ICategory, ICost } from '../../../interfaces/interfaces';
-import { addCategory, deleteCategory } from '../../../store/categories/CategoriesActionCreator';
+import { addCategory } from '../../../store/categories/CategoriesActionCreator';
 import { addNewCost } from '../../../store/costs/CostsActionCreator';
 import Button from '../../Button';
 import CostList from '../../CostList';
 import IconButton from '../../IconButton';
 import InputField from '../../InputField';
-import Modal from '../../Modal';
 import AddCategoryModal from '../../ModalComponents/AddCategoryModal';
 import DeleteCategoryModal from '../../ModalComponents/DeleteCategoryModal';
 import RadioButton from '../../RadioButton/RadioButton';
@@ -72,17 +71,17 @@ function CostsPage() {
 
     return (
         <>
-            <div className={styles.formContainer}>
-                <p className={styles.title}>Add cost</p>
+            <div className={styles.addFormContainer}>
+                <p className={styles.addFormTitle}>Add cost</p>
                 <form
                     noValidate
                     autoComplete="off"
-                    className={styles.form}
+                    className={styles.addForm}
                     onSubmit={handleSubmitNewCost}
                 >
                     <div className={styles.inputWrap}>
                         <InputField
-                            color="pink"
+                            color="blue"
                             size="medium"
                             label="title"
                             type="text"
@@ -93,7 +92,7 @@ function CostsPage() {
                     </div>
                     <div className={styles.inputWrap}>
                         <InputField
-                            color="pink"
+                            color="blue"
                             size="medium"
                             label="sum"
                             type="number"
@@ -128,7 +127,7 @@ function CostsPage() {
                                         <RadioButton
                                             label={category.category}
                                             name="costs"
-                                            color="pink"
+                                            color="blue"
                                             selectedRadio={selectedCategory}
                                             onChange={setSelectedCategory}
                                         />
@@ -137,7 +136,7 @@ function CostsPage() {
                         </ul>
                     </div>
                     <Button
-                        color="pink"
+                        color="blue"
                         size="large"
                         variant="contained"
                         type="submit"

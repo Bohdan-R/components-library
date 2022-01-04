@@ -21,12 +21,12 @@
     transition: 250ms;
 
     &:hover {
-        color: $color-accent-pink;
+        color: $color-accent-blue;
         cursor: pointer;
         /* background-color: #fafafa; */
 
         &::before {
-            background-color: $color-accent-pink;
+            background-color: $color-accent-blue;
         }
     }
 
@@ -35,7 +35,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 10px;
+        width: 8px;
         height: 100%;
         background-color: transparent;
 
@@ -43,7 +43,7 @@
     }
 
     &.active {
-        color: $color-accent-pink;
+        color: $color-accent-blue;
         /* background-color: #fafafa; */
 
         &::before {
@@ -51,9 +51,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 10px;
+            width: 8px;
             height: 100%;
-            background-color: $color-accent-pink;
+            background-color: $color-accent-blue;
         }
     }  
 }
@@ -70,15 +70,15 @@
     display: flex;
     width: 100%;
     padding: 10px 0;
-    padding-left: 30px;
+    padding-left: 25px;
 
     &::before {
         position: absolute;
         top: 0;
         left: 0;
-        width: 10px;
+        width: 8px;
         height: 100%;
-        background-color: $color-accent-pink;
+        background-color: $color-accent-blue;
     }
 }
 

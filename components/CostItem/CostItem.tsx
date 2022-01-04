@@ -47,30 +47,41 @@ function CostItem({ cost, selectItems }: CostItemProps) {
     return (
         <>
             {isChange === false ? (
-                <li className={styles.item}>
-                    <p className={styles.content}>{cost.title}</p>
-                    <p className={styles.content}>{cost.sum}</p>
-                    <p className={styles.content}>{cost.category}</p>
-                    <div className={styles.btnWrap}>
-                        <IconButton
-                            type="button"
-                            variant="edit"
-                            size="medium"
-                            onClick={handleIsChange}
-                        />
-                        <IconButton
-                            type="button"
-                            variant="delete"
-                            size="medium"
-                            onClick={() => dispatch(deleteCost(cost.id))}
-                        />
-                    </div>
-                </li>
+                <tr className={styles.item}>
+                    <td className={styles.itemContent}>
+                        {cost.title}
+                        <span className={styles.decoration}></span>
+                    </td>
+                    <td className={styles.itemContent}>
+                        {cost.sum}
+                        <span className={styles.decoration}></span>
+                    </td>
+                    <td className={styles.itemContent}>
+                        {cost.category}
+                        <span className={styles.decoration}></span>
+                    </td>
+                    <td className={styles.itemContent}>
+                        <div className={styles.btnBox}>
+                            <IconButton
+                                type="button"
+                                variant="edit"
+                                size="medium"
+                                onClick={handleIsChange}
+                            />
+                            <IconButton
+                                type="button"
+                                variant="delete"
+                                size="medium"
+                                onClick={() => dispatch(deleteCost(cost.id))}
+                            />
+                        </div>
+                    </td>
+                </tr>
             ) : (
-                <div className={styles.item}>
-                    <div>
+                <tr className={styles.item}>
+                    <td className={styles.itemContent}>
                         <InputField
-                            color="pink"
+                            color="blue"
                             size="small"
                             label="title"
                             type="text"
@@ -78,10 +89,11 @@ function CostItem({ cost, selectItems }: CostItemProps) {
                             as="input"
                             onChange={handleEditTitle}
                         />
-                    </div>
-                    <div>
+                        <span className={styles.decoration}></span>
+                    </td>
+                    <td className={styles.itemContent}>
                         <InputField
-                            color="pink"
+                            color="blue"
                             size="small"
                             label="sum"
                             type="text"
@@ -89,30 +101,34 @@ function CostItem({ cost, selectItems }: CostItemProps) {
                             as="input"
                             onChange={handleEditSum}
                         />
-                    </div>
-                    <div>
+                        <span className={styles.decoration}></span>
+                    </td>
+                    <td className={styles.itemContent}>
                         <Select
                             label="Category"
                             items={selectItems}
                             selected={selectedCategory}
                             setSelected={setSelectedCategory}
                         />
-                    </div>
-                    <div className={styles.btnWrap}>
-                        <IconButton
-                            type="button"
-                            variant="confirm"
-                            size="medium"
-                            onClick={handleSubmit}
-                        />
-                        <IconButton
-                            type="button"
-                            variant="close"
-                            size="medium"
-                            onClick={handleIsChange}
-                        />
-                    </div>
-                </div>
+                        <span className={styles.decoration}></span>
+                    </td>
+                    <td className={styles.itemContent}>
+                        <div className={styles.btnBox}>
+                            <IconButton
+                                type="button"
+                                variant="confirm"
+                                size="medium"
+                                onClick={handleSubmit}
+                            />
+                            <IconButton
+                                type="button"
+                                variant="cancel"
+                                size="medium"
+                                onClick={handleIsChange}
+                            />
+                        </div>
+                    </td>
+                </tr>
             )}
         </>
     );
