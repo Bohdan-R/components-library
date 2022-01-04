@@ -1,0 +1,75 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "categories": [
+    {
+      "id": "dlw4mjW8L",
+      "category": "other"
+    },
+    {
+      "id": "gJ4GPE95u",
+      "category": "Sport"
+    },
+    {
+      "id": "xZCuQ3TaZ",
+      "category": "Games"
+    },
+    {
+      "id": "9iEk3eRMS",
+      "category": "Food"
+    }
+  ],
+  "costs": [
+    {
+      "id": "dVwPmBW8L",
+      "title": "Cosr",
+      "sum": "120",
+      "category": "Games"
+    },
+    {
+      "id": "YnMwSdlD5",
+      "title": "Pineapple",
+      "sum": "10",
+      "category": "Food"
+    },
+    {
+      "id": "j9ZZWBmt_",
+      "title": "Sushi",
+      "sum": "180",
+      "category": "Food"
+    },
+    {
+      "id": "LQKAB-wlJ",
+      "title": "Computer mouse",
+      "sum": "2700",
+      "category": "Sport"
+    },
+    {
+      "id": "XZdddnYH8",
+      "title": "Hrukalo",
+      "sum": "1000",
+      "category": "Sport"
+    },
+    {
+      "id": "wlX7TUX5H",
+      "title": "Kukre",
+      "sum": "100",
+      "category": "Food"
+    }
+  ]
+}

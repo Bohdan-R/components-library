@@ -1,0 +1,216 @@
+@import '../../styles/colors';
+
+.button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    border-radius: 4px;
+
+    &.contained {
+        color: #ffffff;
+        box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+        0px 2px 2px 0px rgb(0 0 0 / 14%),
+        0px 1px 5px 0px rgb(0 0 0 / 12%);
+        transition: 250ms;
+
+        &:hover {
+            box-shadow: 0px 4px 2px -3px rgb(0 0 0 / 20%),
+            0px 3px 3px 0px rgb(0 0 0 / 14%),
+            0px 2px 7px 0px rgb(0 0 0 / 12%);
+        }
+
+        &.purple {
+            background-color: $color-accent-purple;
+            transition: 250ms;
+            &:hover {
+                background-color: $color-hover-purple;
+            }
+            &:disabled {
+                background-color: $color-disabled-purple;
+            }
+        }
+        &.green{
+            background-color: $color-accent-green;
+            transition: 250ms;
+            &:hover {
+                background-color: $color-hover-green;
+            }
+            &:disabled {
+                background-color: $color-disabled-green;
+            }
+        }
+        &.yellow {
+            background-color: $color-accent-yellow;
+            transition: 250ms;
+            &:hover {
+                background-color: $color-hover-yellow;
+            }
+            &:disabled {
+                background-color: $color-disabled-yellow;
+            }
+        }
+        &.blue {
+            background-color: $color-accent-blue;
+            transition: 250ms;
+            &:hover {
+                background-color: $color-hover-blue;
+            }
+            &:disabled {
+                background-color: $color-disabled-blue;
+            }
+        }
+        &.orange {
+            background-color: $color-accent-orange;
+            transition: 250ms;
+            &:hover {
+                background-color: $color-hover-orange;
+            }
+            &:disabled {
+                background-color: $color-disabled-orange;
+            }
+        }
+        &.pink {
+            background-color: $color-accent-pink;
+            transition: 250ms;
+            &:hover {
+                background-color: $color-hover-pink;
+            }
+            &:disabled {
+                background-color: $color-disabled-pink;
+            }
+        }
+    }
+
+    &.outlined {
+
+        &.purple {
+            color: $color-accent-purple;
+            background-color: transparent;
+            border: 1px solid $color-disabled-purple;
+            transition: 250ms;
+
+            &:hover {
+                background-color: $color-light-purple;
+                border: 1px solid $color-accent-purple;
+            }
+
+            &:disabled {
+                color: $color-disabled-purple;
+            }
+        }
+
+        &.green {
+            color: $color-accent-green;
+            background-color: transparent;
+            border: 1px solid $color-disabled-green;
+            transition: 250ms;
+
+            &:hover {
+                background-color: $color-light-green;
+                border: 1px solid $color-accent-green;
+            }
+
+            &:disabled {
+                color: $color-disabled-green;
+            }
+        }
+
+        &.yellow {
+            color: $color-accent-yellow;
+            background-color: transparent;
+            border: 1px solid $color-disabled-yellow;
+            transition: 250ms;
+
+            &:hover {
+                background-color: $color-light-yellow;
+                border: 1px solid $color-accent-yellow;
+            }
+
+            &:disabled {
+                color: $color-disabled-yellow;
+            }
+        }
+
+        &.blue {
+           color: $color-accent-blue;
+           background-color: transparent;
+           border: 1px solid $color-disabled-blue;
+           transition: 250ms;
+
+           &:hover {
+               background-color: $color-light-blue;
+               border: 1px solid $color-accent-blue;
+           }
+
+           &:disabled {
+               color: $color-disabled-blue;
+           }
+        }
+
+        &.orange {
+           color: $color-accent-orange;
+           background-color: transparent;
+           border: 1px solid $color-disabled-orange;
+           transition: 250ms;
+
+           &:hover {
+               background-color: $color-light-orange;
+               border: 1px solid $color-accent-orange;
+           }
+
+           &:disabled {
+               color: $color-disabled-orange;
+           }
+        }
+
+        &.pink {
+           color: $color-accent-pink;
+           background-color: transparent;
+           border: 1px solid $color-disabled-pink;
+           transition: 250ms;
+
+           &:hover {
+               background-color: $color-light-pink;
+               border: 1px solid $color-accent-pink;
+           }
+
+           &:disabled {
+               color: $color-disabled-pink;
+           }
+        }
+    }
+}
+
+.small {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.smallLong {
+    padding: 5px 25px;
+    font-size: 14px;
+}
+
+.medium {
+    padding: 7px 12px;
+    font-size: 16px;
+}
+
+.mediumLong {
+    padding: 7px 27px;
+    font-size: 16px;
+}
+
+.large {
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+.largeLong {
+    padding: 10px 30px;
+    font-size: 18px;
+}

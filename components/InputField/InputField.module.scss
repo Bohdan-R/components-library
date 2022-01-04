@@ -1,0 +1,136 @@
+@import '../../styles/colors';
+
+.wrap {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    outline: none;
+
+    resize: none;
+    transition: 200ms;
+
+    &.small {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    &.medium {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    &.large {
+        padding: 20px 25px;
+        font-size: 18px;
+    }
+}
+
+.input.purple:focus,
+.input.purple:not(:placeholder-shown).input.purple:not(:focus) {
+    border: 1px solid $color-accent-purple;
+}
+
+.input.green:focus,
+.input.green:not(:placeholder-shown).input.green:not(:focus) {
+    border: 1px solid $color-accent-green;
+}
+
+.input.yellow:focus,
+.input.yellow:not(:placeholder-shown).input.yellow:not(:focus) {
+    border: 1px solid $color-accent-yellow;
+}
+
+.input.blue:focus,
+.input.blue:not(:placeholder-shown).input.blue:not(:focus) {
+    border: 1px solid $color-accent-blue;
+}
+
+.input.orange:focus, 
+.input.orange:not(:placeholder-shown).input.orange:not(:focus) {
+    border: 1px solid $color-accent-orange;
+}
+
+.input.pink:focus,
+.input.pink:not(:placeholder-shown).input.pink:not(:focus) {
+    border: 1px solid $color-accent-pink;
+}
+
+.label {
+    position: absolute;
+    display: inline-block;
+    color: #bdbdbd;
+    background-color: #ffffff;
+
+    cursor: text;
+    transition: 200ms;
+
+    &::first-letter {
+        text-transform: capitalize;
+    }
+
+    &.small {
+        top: 10px;
+        left: 15px;
+        padding: 0 3px;
+        font-size: 14px;
+
+        .wrap:focus-within &,
+        .input:not(:placeholder-shown).input:not(:focus) ~ & {
+            transform: translateY(-20px);
+            font-size: 10px;
+        }
+    }
+    &.medium {
+        top: 15px;
+        left: 20px;
+        padding: 0 5px;
+        font-size: 16px;
+
+        .wrap:focus-within &,
+        .input:not(:placeholder-shown).input:not(:focus) ~ & {
+            transform: translateY(-25px);
+            font-size: 12px;
+        }
+    }
+    &.large {
+        top: 20px;
+        left: 25px;
+        padding: 0 7px;
+        font-size: 18px;
+
+        .wrap:focus-within &,
+        .input:not(:placeholder-shown).input:not(:focus) ~ & {
+            transform: translateY(-29px);
+            font-size: 14px;
+        }
+    }
+
+    .wrap:focus-within &.purple,
+    .input:not(:placeholder-shown).input:not(:focus)~&.purple {
+        color: $color-accent-purple;
+    }
+    .wrap:focus-within &.green,
+    .input:not(:placeholder-shown).input:not(:focus)~&.green {
+        color: $color-accent-green;
+    }
+    .wrap:focus-within &.yellow,
+    .input:not(:placeholder-shown).input:not(:focus)~&.yellow {
+        color: $color-accent-yellow;
+    }
+    .wrap:focus-within &.blue,
+    .input:not(:placeholder-shown).input:not(:focus)~&.blue {
+        color: $color-accent-blue;
+    }
+    .wrap:focus-within &.orange,
+    .input:not(:placeholder-shown).input:not(:focus)~&.orange {
+        color: $color-accent-orange;
+    }
+    .wrap:focus-within &.pink,
+    .input:not(:placeholder-shown).input:not(:focus)~&.pink {
+        color: $color-accent-pink;
+    }
+}

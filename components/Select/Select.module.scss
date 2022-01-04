@@ -1,0 +1,73 @@
+@import '../../styles/colors';
+
+.select {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.selectHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.1);
+    cursor: pointer;
+
+    &.disabled {
+        cursor: default;
+    }
+}
+
+.selectIcon {
+    font-size: 20px;
+
+    transition: 250ms;
+
+    &.isOpen {
+        transform: rotate(180deg);
+    }
+}
+
+.selectContent {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    margin-top: 3px;
+
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
+
+    overflow: hidden;
+    opacity: 0;
+    transition: 250ms;
+
+    &.isOpen {
+        height: auto;
+        max-height: 120px;
+        opacity: 1;
+
+        overflow-y: scroll;
+    }
+}
+
+.selectItem {
+    padding: 5px 10px;
+    background-color: #fff;
+
+    cursor: pointer;
+    transition: 250ms;
+    
+    &::first-letter {
+        text-transform: uppercase;
+    }
+
+    &:hover {
+        background-color: #f5f5f5;
+    }
+}

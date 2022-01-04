@@ -1,0 +1,112 @@
+@import '../../styles/colors';
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    border-radius: 50%;
+
+    transition: 250ms;
+
+    &.small {
+        width: 25px;
+        height: 25px;
+    }
+
+    &.medium {
+        width: 35px;
+        height: 35px;
+    }
+
+    &.large {
+        width: 45px;
+        height: 45px;
+    }
+
+    &:hover {
+        background-color: $color-iconBg-hover;
+    }
+
+    /* &.close {
+        &:hover {
+            background-color: $color-iconBg-hover;
+        }
+    }
+    &.edit {
+        &:hover {
+            background-color: $color-iconBg-hover;
+        }
+    }
+    &.delete {
+        &:hover {
+            background-color: $color-iconBg-hover;
+        }
+    }
+    &.add {
+        &:hover {
+            background-color: $color-iconBg-hover;
+        }
+    } */
+}
+
+
+
+.icon {
+    color: $color-icon;
+    transition: 250ms;
+    & svg {
+        display: block;
+    }
+
+    &.close {      
+        .btn:hover & {
+            color: $color-close-icon;
+        } 
+    }
+    &.edit {
+        .btn:hover & {
+            color: $color-edit-icon;
+        }
+    }
+
+    &.delete {
+        .btn:hover & {
+            color: $color-delete-icon;
+        }
+    }
+
+    &.add {
+        .btn:hover & {
+            color: $color-add-icon;
+        }
+    }
+    &.confirm {
+        .btn:hover & {
+            color: $color-confirm-icon;
+        }
+    }
+
+    &.small {
+        width: 15px;
+        height: 15px;
+    }
+
+    &.medium {
+        width: 20px;
+        height: 20px;
+    }
+
+    &.large {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+
