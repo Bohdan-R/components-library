@@ -45,12 +45,6 @@ function Modal({ active, setActive, children }: ModalProps) {
                     }
                 >
                     {children}
-                    {/*  <IconButton
-                        variant="delete"
-                        size="large"
-                        onClick={() => setActive(false)}
-                        className={styles.closeBtn}
-                    /> */}
                 </div>
             </div>
         </Portal>

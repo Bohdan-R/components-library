@@ -9,6 +9,8 @@ import CostList from '../../CostList';
 import IconButton from '../../IconButton';
 import InputField from '../../InputField';
 import Modal from '../../Modal';
+import AddCategoryModal from '../../ModalComponents/AddCategoryModal';
+import DeleteCategoryModal from '../../ModalComponents/DeleteCategoryModal';
 import RadioButton from '../../RadioButton/RadioButton';
 import styles from './CostsPage.module.scss';
 
@@ -22,17 +24,11 @@ function CostsPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [addNewCategory, setAddNewCategory] = useState<string>('');
 
-    const handleOpenModalAddModal = () => {
-        setIsOpenAddModal(true);
+    const handleIsOpenAddModal = () => {
+        setIsOpenAddModal(!isOpenAddModal);
     };
-    const handleCloseModalAddModal = () => {
-        setIsOpenAddModal(false);
-    };
-    const handleOpenModalDeleteModal = () => {
-        setIsOpenDeleteModal(true);
-    };
-    const handleCloseModalDeleteModal = () => {
-        setIsOpenDeleteModal(false);
+    const handleIsOpenDeleteModal = () => {
+        setIsOpenDeleteModal(!isOpenDeleteModal);
     };
 
     const handleTitle = (value: string) => {
@@ -71,7 +67,7 @@ function CostsPage() {
         dispatch(addCategory(category));
 
         setAddNewCategory('');
-        handleCloseModalAddModal();
+        handleIsOpenAddModal();
     };
 
     return (
@@ -114,13 +110,13 @@ function CostsPage() {
                                     type="button"
                                     variant="add"
                                     size="small"
-                                    onClick={handleOpenModalAddModal}
+                                    onClick={handleIsOpenAddModal}
                                 />
                                 <IconButton
                                     type="button"
                                     variant="delete"
                                     size="small"
-                                    onClick={handleOpenModalDeleteModal}
+                                    onClick={handleIsOpenDeleteModal}
                                 />
                             </div>
                         </div>
@@ -152,72 +148,19 @@ function CostsPage() {
                 </form>
             </div>
             <CostList />
-            <Modal active={isOpenAddModal} setActive={setIsOpenAddModal}>
-                <div className={styles.addFormContainer}>
-                    <p className={styles.titleForm}>Add category for payment</p>
-                    <form
-                        className={styles.addForm}
-                        noValidate
-                        autoComplete="off"
-                        onSubmit={handleSubmitNewCategory}
-                    >
-                        <InputField
-                            color="pink"
-                            size="medium"
-                            label="New category"
-                            type="text"
-                            value={addNewCategory}
-                            as="input"
-                            onChange={handleAddNewCategory}
-                        />
-                        <Button
-                            color="pink"
-                            size="medium"
-                            variant="contained"
-                            type="submit"
-                            label="Submit"
-                            as="button"
-                            disabled={addNewCategory === '' && true}
-                            className={styles.btn}
-                        />
-                        <IconButton
-                            type="button"
-                            variant="close"
-                            size="medium"
-                            onClick={handleCloseModalAddModal}
-                            className={styles.closeBtn}
-                        />
-                    </form>
-                </div>
-            </Modal>
-            <Modal active={isOpenDeleteModal} setActive={setIsOpenDeleteModal}>
-                <div className={styles.deleteFormContainer}>
-                    <p className={styles.titleForm}>Delete category</p>
-                    <ul className={styles.list}>
-                        {categories &&
-                            categories.map(category => (
-                                <li key={category.id}>
-                                    <p>{category.category}</p>
-                                    <IconButton
-                                        type="button"
-                                        variant="delete"
-                                        size="medium"
-                                        onClick={() => dispatch(deleteCategory(category.id))}
-                                        className={styles.deleteBtn}
-                                    />
-                                </li>
-                            ))}
-                    </ul>
 
-                    <IconButton
-                        type="button"
-                        variant="close"
-                        size="medium"
-                        onClick={handleCloseModalDeleteModal}
-                        className={styles.closeBtn}
-                    />
-                </div>
-            </Modal>
+            <AddCategoryModal
+                isOpen={isOpenAddModal}
+                setIsOpen={handleIsOpenAddModal}
+                submitFunc={handleSubmitNewCategory}
+                inputValue={addNewCategory}
+                onChangeFunc={handleAddNewCategory}
+            />
+            <DeleteCategoryModal
+                isOpen={isOpenDeleteModal}
+                setIsOpen={handleIsOpenDeleteModal}
+                categories={categories}
+            />
         </>
     );
 }

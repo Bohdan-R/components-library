@@ -48,6 +48,7 @@ function Button<T>({
         styles.disabled,
         styles[size],
         styles[variant],
+        className,
     );
     return (
         <RootComponent
