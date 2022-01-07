@@ -1,0 +1,116 @@
+@import '../../styles/colors';
+
+.container {
+    position: relative;
+}
+
+.tooltip {
+    display: block;
+    position: absolute;
+
+    background-color: #616161;
+    border-radius: 5px;
+
+    color: #fff;
+    line-height: 1.1;
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 250ms;
+    pointer-events: none;
+
+    .container:hover>& {
+        opacity: 1;
+    }
+}
+
+.top {
+    bottom: 130%;
+    right: 50%;
+    transform: translateX(50%);
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 100%;
+        right: 50%;
+        transform: translateX(50%);   
+        border-style: solid;
+        border-color: #616161 transparent transparent transparent;
+    }
+}
+
+.bottom {
+    top: 130%;
+    right: 50%;
+    transform: translateX(50%);
+
+    &::after {
+        position: absolute;
+        content: '';
+        bottom: 100%;
+        right: 50%;
+        transform: translateX(50%);
+        border-style: solid;
+        border-color: transparent transparent #616161 transparent;
+    }
+}
+
+.left {
+    top: 50%;
+    right: 130%;
+    transform: translateY(-50%);
+
+    &::after {
+        position: absolute;
+        content: '';
+        bottom: 50%;
+        left: 100%;
+        transform: translateY(50%);
+        border-style: solid;
+        border-color: transparent transparent transparent #616161;
+    }
+}
+
+.right {
+    top: 50%;
+    left: 130%;
+    transform: translateY(-50%);
+
+    &::after {
+        position: absolute;
+        content: '';
+        bottom: 50%;
+        right: 100%;
+        transform: translateY(50%);
+        border-style: solid;
+        border-color: transparent #616161 transparent transparent;
+    }
+}
+
+.large {
+    padding: 5px 8px;
+    font-size: 13px;
+
+    &::after {
+        border-width: 5px;
+    }
+}
+
+.medium {
+    padding: 4px 6px;
+    font-size: 11px;
+
+    &::after {
+        border-width: 4px;
+    }
+}
+
+.small {
+    padding: 4px 5px;
+    font-size: 9px;
+
+    &::after {
+        border-width: 3px;
+    }
+}

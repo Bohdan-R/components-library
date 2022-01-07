@@ -4,8 +4,8 @@ import { AiFillDelete, AiFillEdit, AiOutlineClose } from 'react-icons/ai';
 import { FaCheck } from 'react-icons/fa';
 import { GoPlus } from 'react-icons/go';
 import { GiCancel } from 'react-icons/gi';
-import styles from './IconButton.module.scss';
 import { IconBtnVariant, Size, BtnType } from '../../interfaces/types';
+import styles from './IconButton.module.scss';
 
 interface IconButtonProps {
     variant: IconBtnVariant;

@@ -5,6 +5,7 @@ import { deleteCost, updateCost } from '../../store/costs/CostsActionCreator';
 import IconButton from '../IconButton';
 import InputField from '../InputField';
 import Select from '../Select';
+import Tooltip from '../Tooltip';
 
 import styles from './CostItem.module.scss';
 
@@ -62,18 +63,22 @@ function CostItem({ cost, selectItems }: CostItemProps) {
                     </td>
                     <td className={styles.itemContent}>
                         <div className={styles.btnBox}>
-                            <IconButton
-                                type="button"
-                                variant="edit"
-                                size="medium"
-                                onClick={handleIsChange}
-                            />
-                            <IconButton
-                                type="button"
-                                variant="delete"
-                                size="medium"
-                                onClick={() => dispatch(deleteCost(cost.id))}
-                            />
+                            <Tooltip label="Edit" size="large" position="top">
+                                <IconButton
+                                    type="button"
+                                    variant="edit"
+                                    size="medium"
+                                    onClick={handleIsChange}
+                                />
+                            </Tooltip>
+                            <Tooltip label="Delete" size="large" position="top">
+                                <IconButton
+                                    type="button"
+                                    variant="delete"
+                                    size="medium"
+                                    onClick={() => dispatch(deleteCost(cost.id))}
+                                />
+                            </Tooltip>
                         </div>
                     </td>
                 </tr>
@@ -114,18 +119,22 @@ function CostItem({ cost, selectItems }: CostItemProps) {
                     </td>
                     <td className={styles.itemContent}>
                         <div className={styles.btnBox}>
-                            <IconButton
-                                type="button"
-                                variant="confirm"
-                                size="medium"
-                                onClick={handleSubmit}
-                            />
-                            <IconButton
-                                type="button"
-                                variant="cancel"
-                                size="medium"
-                                onClick={handleIsChange}
-                            />
+                            <Tooltip label="Accept" size="large" position="top">
+                                <IconButton
+                                    type="button"
+                                    variant="confirm"
+                                    size="medium"
+                                    onClick={handleSubmit}
+                                />
+                            </Tooltip>
+                            <Tooltip label="Cancel" size="large" position="top">
+                                <IconButton
+                                    type="button"
+                                    variant="cancel"
+                                    size="medium"
+                                    onClick={handleIsChange}
+                                />
+                            </Tooltip>
                         </div>
                     </td>
                 </tr>

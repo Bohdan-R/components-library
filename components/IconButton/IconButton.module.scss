@@ -60,7 +60,7 @@
     }
     &.cancel {
         &:hover {
-            background-color: $color-iconBg-hover;
+            background-color: #ffcdd2;
         }
     }
 }
@@ -103,7 +103,7 @@
     }
     &.cancel {
         .btn:hover & {
-            color: $color-close-icon;
+            color: $color-delete-icon;
         }
     }
 

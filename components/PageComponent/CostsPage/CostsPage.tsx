@@ -11,6 +11,7 @@ import InputField from '../../InputField';
 import AddCategoryModal from '../../ModalComponents/AddCategoryModal';
 import DeleteCategoryModal from '../../ModalComponents/DeleteCategoryModal';
 import RadioButton from '../../RadioButton/RadioButton';
+import Tooltip from '../../Tooltip';
 import styles from './CostsPage.module.scss';
 
 function CostsPage() {
@@ -105,18 +106,23 @@ function CostsPage() {
                         <div className={styles.radioTitleBox}>
                             <p className={styles.radioTitle}>Choose category</p>
                             <div className={styles.btnBox}>
-                                <IconButton
-                                    type="button"
-                                    variant="add"
-                                    size="small"
-                                    onClick={handleIsOpenAddModal}
-                                />
-                                <IconButton
-                                    type="button"
-                                    variant="delete"
-                                    size="small"
-                                    onClick={handleIsOpenDeleteModal}
-                                />
+                                <Tooltip label="Add category" size="medium" position="top">
+                                    <IconButton
+                                        type="button"
+                                        variant="add"
+                                        size="small"
+                                        onClick={handleIsOpenAddModal}
+                                    />
+                                </Tooltip>
+
+                                <Tooltip label="Delete category" size="medium" position="top">
+                                    <IconButton
+                                        type="button"
+                                        variant="delete"
+                                        size="small"
+                                        onClick={handleIsOpenDeleteModal}
+                                    />
+                                </Tooltip>
                             </div>
                         </div>
 
