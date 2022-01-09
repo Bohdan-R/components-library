@@ -4,14 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { ICategory, ICost } from '../../../interfaces/interfaces';
 import { addCategory } from '../../../store/categories/CategoriesActionCreator';
 import { addNewCost } from '../../../store/costs/CostsActionCreator';
-import Button from '../../Button';
 import CostList from '../../CostList';
-import IconButton from '../../IconButton';
-import InputField from '../../InputField';
+import CostsFilter from '../../CostsFilter';
+import AddCostFrom from '../../FormComponents/AddCostFrom';
 import AddCategoryModal from '../../ModalComponents/AddCategoryModal';
 import DeleteCategoryModal from '../../ModalComponents/DeleteCategoryModal';
-import RadioButton from '../../RadioButton/RadioButton';
-import Tooltip from '../../Tooltip';
 import styles from './CostsPage.module.scss';
 
 function CostsPage() {
@@ -72,85 +69,23 @@ function CostsPage() {
 
     return (
         <>
-            <div className={styles.addFormContainer}>
-                <p className={styles.addFormTitle}>Add cost</p>
-                <form
-                    noValidate
-                    autoComplete="off"
-                    className={styles.addForm}
-                    onSubmit={handleSubmitNewCost}
-                >
-                    <div className={styles.inputWrap}>
-                        <InputField
-                            color="blue"
-                            size="medium"
-                            label="title"
-                            type="text"
-                            value={title}
-                            as="input"
-                            onChange={handleTitle}
-                        />
-                    </div>
-                    <div className={styles.inputWrap}>
-                        <InputField
-                            color="blue"
-                            size="medium"
-                            label="sum"
-                            type="number"
-                            value={sum}
-                            as="input"
-                            onChange={handleSum}
-                        />
-                    </div>
-                    <div className={styles.radioContainer}>
-                        <div className={styles.radioTitleBox}>
-                            <p className={styles.radioTitle}>Choose category</p>
-                            <div className={styles.btnBox}>
-                                <Tooltip label="Add category" size="medium" position="top">
-                                    <IconButton
-                                        type="button"
-                                        variant="add"
-                                        size="small"
-                                        onClick={handleIsOpenAddModal}
-                                    />
-                                </Tooltip>
+            <AddCostFrom
+                title={title}
+                sum={sum}
+                selectedCategory={selectedCategory}
+                categories={categories}
+                handleTitle={handleTitle}
+                handleSum={handleSum}
+                setSelectedCategory={setSelectedCategory}
+                handleSubmitNewCost={handleSubmitNewCost}
+                handleIsOpenAddModal={handleIsOpenAddModal}
+                handleIsOpenDeleteModal={handleIsOpenDeleteModal}
+            />
 
-                                <Tooltip label="Delete category" size="medium" position="top">
-                                    <IconButton
-                                        type="button"
-                                        variant="delete"
-                                        size="small"
-                                        onClick={handleIsOpenDeleteModal}
-                                    />
-                                </Tooltip>
-                            </div>
-                        </div>
-
-                        <ul className={styles.radioGroup}>
-                            {categories &&
-                                categories.map(category => (
-                                    <li key={category.id} className={styles.radioItem}>
-                                        <RadioButton
-                                            label={category.category}
-                                            name="costs"
-                                            color="blue"
-                                            selectedRadio={selectedCategory}
-                                            onChange={setSelectedCategory}
-                                        />
-                                    </li>
-                                ))}
-                        </ul>
-                    </div>
-                    <Button
-                        color="blue"
-                        size="large"
-                        variant="contained"
-                        type="submit"
-                        label="Submit"
-                        as="button"
-                        disabled={(title === '' || sum === '' || selectedCategory === '') && true}
-                    />
-                </form>
+            <div className={styles.filterSection}>
+                <div className={styles.filterBox}>
+                    <CostsFilter />
+                </div>
             </div>
             <CostList />
 

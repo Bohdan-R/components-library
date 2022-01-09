@@ -1,11 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useAppSelector } from '../../hooks/redux';
 import { ICost } from '../../interfaces/interfaces';
 import CostItem from '../CostItem';
+import costsSelectors from '../../store/costs/CostsSelectors';
 import styles from './CostList.module.scss';
 
 function CostList() {
-    const { costs } = useAppSelector(state => state.costReducer);
+    const costs = useSelector(costsSelectors.getFilteredCosts);
+    /* const { costs } = useAppSelector(state => state.costReducer.costs); */
     const { categories } = useAppSelector(state => state.categoryReducer);
 
     return (

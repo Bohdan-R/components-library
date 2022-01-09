@@ -5,4 +5,5 @@ export type BtnVariant = 'contained' | 'outlined';
 export type BtnType = 'button' | 'submit';
 export type IconBtnVariant = 'close' | 'edit' | 'delete' | 'add' | 'confirm' | 'cancel';
 export type InputType = 'number' | 'text';
+export type AutoComplete = 'on' | 'off';
 export type Position = 'top' | 'bottom' | 'right' | 'left';

@@ -1,64 +1,11 @@
 @import '../../../styles/colors';
 
-.addFormContainer {
-    width: 100%;
-    max-width: 500px;
-    padding: 30px;
-    margin: 0 auto;
-    margin-bottom: 100px;
-
-    border-top: 2px solid #212121;
-    border-bottom: 2px solid #212121;
-    /* border-radius: 10px; */
-    /* box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%),
-    0px 1px 3px 0px rgb(0 0 0 / 12%); */
-}
-
-.addFormTitle {
-    margin-bottom: 15px;
-    font-size: 26px;
-    font-weight: 700;
-}
-
-.addForm {
-
-}
-
-.inputWrap {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.radioContainer {
-    margin-bottom: 20px;
-}
-
-.radioTitleBox {
+.filterSection {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.radioTitle {
-    font-size: 16px;
-}
-
-.btnBox {
-    display: flex;
-}
-
-.radioGroup {
-    display: flex;
-    flex-direction: column;
-}
-
-.radioItem {
-    margin-bottom: 10px;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
+.filterBox {
+    width: 300px;
 }

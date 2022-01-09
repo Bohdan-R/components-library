@@ -28,7 +28,7 @@ function AddCategoryModal<T>({
                     className={styles.addForm}
                     noValidate
                     autoComplete="off"
-                    onSubmit={(e: React.FormEvent<HTMLFormElement>) => submitFunc(e)}
+                    onSubmit={submitFunc}
                 >
                     <InputField
                         color="blue"

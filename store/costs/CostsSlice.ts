@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, combineReducers } from '@reduxjs/toolkit';
 import { ICost } from '../../interfaces/interfaces';
 import { addNewCost, fetchCosts } from './CostsActionCreator';
 
@@ -8,15 +8,23 @@ interface CostState {
     error: string;
 }
 
-const initialState: CostState = {
+interface FilterState {
+    value: string;
+}
+
+const initialCostState: CostState = {
     costs: [],
     isLoading: false,
     error: null,
 };
 
+const initialFilterState: FilterState = {
+    value: '',
+};
+
 export const costSlice = createSlice({
     name: 'cost',
-    initialState,
+    initialState: initialCostState,
     reducers: {
         addCost(state, action: PayloadAction<ICost>) {
             state.costs = [...state.costs, action.payload];
@@ -56,6 +64,23 @@ export const costSlice = createSlice({
     },
 });
 
-export const { addCost, removeCost, editCost } = costSlice.actions;
+export const filterSlice = createSlice({
+    name: 'filter',
+    initialState: initialFilterState,
+    reducers: {
+        changeFilter(state, action: PayloadAction<string>) {
+            state.value = action.payload;
+        },
+    },
+});
 
-export default costSlice.reducer;
+export const { addCost, removeCost, editCost } = costSlice.actions;
+export const { changeFilter } = filterSlice.actions;
+
+export const costReducer = combineReducers({
+    costs: costSlice.reducer,
+    filter: filterSlice.reducer,
+});
+
+/* export default costSlice.reducer;
+export default filterSlice.reducer; */

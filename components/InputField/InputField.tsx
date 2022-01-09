@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './InputField.module.scss';
-import { Colors, Size, InputType } from '../../interfaces/types';
+import { Colors, Size, InputType, AutoComplete } from '../../interfaces/types';
 
 type RootComponent = 'input' | 'textarea';
 
@@ -12,6 +12,8 @@ interface InputFieldProps {
     value: string | number;
     type: InputType;
     rows?: number;
+    placeholder?: string;
+    autoComplete?: AutoComplete;
     classNameInput?: string;
     classNameLabel?: string;
     as: RootComponent;
@@ -25,6 +27,8 @@ function InputField({
     value,
     type,
     rows,
+    placeholder,
+    autoComplete,
     classNameInput,
     classNameLabel,
     as: RootComponent,
@@ -49,9 +53,10 @@ function InputField({
             <RootComponent
                 id={label}
                 type={type}
-                placeholder=" "
+                placeholder={placeholder ? placeholder : ' '}
                 value={value}
                 rows={rows}
+                autoComplete={autoComplete}
                 onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
                     onChange(e.target.value)
                 }
