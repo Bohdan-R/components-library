@@ -6,9 +6,9 @@ import { addCategory } from '../../../store/categories/CategoriesActionCreator';
 import { addNewCost } from '../../../store/costs/CostsActionCreator';
 import CostList from '../../CostList';
 import CostsFilter from '../../CostsFilter';
-import AddCostFrom from '../../FormComponents/AddCostFrom';
-import AddCategoryModal from '../../ModalComponents/AddCategoryModal';
-import DeleteCategoryModal from '../../ModalComponents/DeleteCategoryModal';
+import AddCostFrom from './CostsPageComponents/AddCostFrom';
+import AddCategoryModal from './CostsPageComponents/AddCategoryModal';
+import DeleteCategoryModal from './CostsPageComponents/DeleteCategoryModal';
 import styles from './CostsPage.module.scss';
 
 function CostsPage() {

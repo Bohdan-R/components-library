@@ -1,9 +1,9 @@
 import React from 'react';
-import { useAppDispatch } from '../../../hooks/redux';
-import { ICategory } from '../../../interfaces/interfaces';
-import { deleteCategory } from '../../../store/categories/CategoriesActionCreator';
-import IconButton from '../../IconButton';
-import Modal from '../../Modal';
+import { useAppDispatch } from '../../../../../hooks/redux';
+import { ICategory } from '../../../../../interfaces/interfaces';
+import { deleteCategory } from '../../../../../store/categories/CategoriesActionCreator';
+import IconButton from '../../../../IconButton';
+import Modal from '../../../../Modal';
 import styles from './DeleteCategoryModal.module.scss';
 
 interface DeleteCategoryModalProps {

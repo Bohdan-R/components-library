@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '../../Button';
-import IconButton from '../../IconButton';
-import InputField from '../../InputField';
-import Modal from '../../Modal';
+import Button from '../../../../Button';
+import IconButton from '../../../../IconButton';
+import InputField from '../../../../InputField';
+import Modal from '../../../../Modal';
 import styles from './AddCategoryModal.module.scss';
 
 interface AddCategoryModalProps<T> {

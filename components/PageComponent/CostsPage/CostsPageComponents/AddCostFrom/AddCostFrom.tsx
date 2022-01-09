@@ -1,10 +1,10 @@
 import React from 'react';
-import { ICategory } from '../../../interfaces/interfaces';
-import Button from '../../Button';
-import IconButton from '../../IconButton';
-import InputField from '../../InputField';
-import RadioButton from '../../RadioButton/RadioButton';
-import Tooltip from '../../Tooltip';
+import { ICategory } from '../../../../../interfaces/interfaces';
+import Button from '../../../../Button';
+import IconButton from '../../../../IconButton';
+import InputField from '../../../../InputField';
+import RadioButton from '../../../../RadioButton/RadioButton';
+import Tooltip from '../../../../Tooltip';
 
 import styles from './AddCostFrom.module.scss';
 
