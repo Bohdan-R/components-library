@@ -1,5 +1,10 @@
 @import '../../../styles/colors';
 
+.headSection {
+    display: flex;
+    justify-content: space-around;
+}
+
 .filterSection {
     display: flex;
     margin-top: 50px;

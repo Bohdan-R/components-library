@@ -19,7 +19,7 @@ const getTotalAmountCosts = createSelector([getFilteredCosts], costs => {
     return costs.length;
 });
 
-const getMinSumOfCosts = state => {
+/* const getMinSumOfCosts = state => {
     const costs = getAllCosts(state);
     const numbers: number[] = [];
 
@@ -28,9 +28,19 @@ const getMinSumOfCosts = state => {
     });
 
     return Math.min(...numbers);
-};
+}; */
 
-const getMaxSumOfCosts = state => {
+const getMinSumOfCosts = createSelector([getFilteredCosts], costs => {
+    const numbers: number[] = [];
+
+    costs.forEach(cost => {
+        numbers.push(cost.sum);
+    });
+
+    return Math.min(...numbers);
+});
+
+/* const getMaxSumOfCosts = state => {
     const costs = getAllCosts(state);
     const numbers: number[] = [];
 
@@ -39,7 +49,17 @@ const getMaxSumOfCosts = state => {
     });
 
     return Math.max(...numbers);
-};
+}; */
+
+const getMaxSumOfCosts = createSelector([getFilteredCosts], costs => {
+    const numbers: number[] = [];
+
+    costs.forEach(cost => {
+        numbers.push(cost.sum);
+    });
+
+    return Math.max(...numbers);
+});
 
 export default {
     getFilter,

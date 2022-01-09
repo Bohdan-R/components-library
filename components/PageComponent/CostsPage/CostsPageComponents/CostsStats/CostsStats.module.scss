@@ -1,0 +1,33 @@
+@import '../../../../../styles/colors';
+
+.container {
+    width: 100%;
+    min-width: 150px;
+    max-width: 400px;
+    height: auto;
+    padding: 30px;
+
+    /* border: 2px solid #212121; */
+    border-top: 2px solid #212121;
+    border-bottom: 2px solid #212121;
+}
+
+.title {
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+
+.item {
+    display: flex;
+    padding: 5px 10px;
+
+    &:nth-child(2n + 1) {
+        background-color: #f5f5f5;
+    }
+}
+
+.itemTitle {
+    width: 100%;
+    min-width: 120px;
+    max-width: 160px;
+}

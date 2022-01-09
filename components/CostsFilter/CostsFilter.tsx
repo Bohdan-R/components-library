@@ -9,14 +9,7 @@ import { changeFilter } from '../../store/costs/CostsSlice';
 function CostsFilter() {
     const dispatch = useAppDispatch();
     const { value } = useSelector(costsSelectors.getFilter);
-    const costs = useSelector(costsSelectors.getAllCosts);
-    const amount = useSelector(costsSelectors.getTotalAmountCosts);
-    const minValue = useSelector(costsSelectors.getMinSumOfCosts);
 
-    console.log('AMOUNT:', amount);
-    console.log('MIN', minValue);
-    console.log('AllCosts', costs);
-    console.log('GetFilter', value);
     const handleChange = (value: string) => {
         dispatch(changeFilter(value));
     };

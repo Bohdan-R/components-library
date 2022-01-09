@@ -10,6 +10,7 @@ import AddCostFrom from './CostsPageComponents/AddCostFrom';
 import AddCategoryModal from './CostsPageComponents/AddCategoryModal';
 import DeleteCategoryModal from './CostsPageComponents/DeleteCategoryModal';
 import styles from './CostsPage.module.scss';
+import CostsStats from './CostsPageComponents/CostsStats';
 
 function CostsPage() {
     const dispatch = useAppDispatch();
@@ -69,18 +70,21 @@ function CostsPage() {
 
     return (
         <>
-            <AddCostFrom
-                title={title}
-                sum={sum}
-                selectedCategory={selectedCategory}
-                categories={categories}
-                handleTitle={handleTitle}
-                handleSum={handleSum}
-                setSelectedCategory={setSelectedCategory}
-                handleSubmitNewCost={handleSubmitNewCost}
-                handleIsOpenAddModal={handleIsOpenAddModal}
-                handleIsOpenDeleteModal={handleIsOpenDeleteModal}
-            />
+            <div className={styles.headSection}>
+                <AddCostFrom
+                    title={title}
+                    sum={sum}
+                    selectedCategory={selectedCategory}
+                    categories={categories}
+                    handleTitle={handleTitle}
+                    handleSum={handleSum}
+                    setSelectedCategory={setSelectedCategory}
+                    handleSubmitNewCost={handleSubmitNewCost}
+                    handleIsOpenAddModal={handleIsOpenAddModal}
+                    handleIsOpenDeleteModal={handleIsOpenDeleteModal}
+                />
+                <CostsStats />
+            </div>
 
             <div className={styles.filterSection}>
                 <div className={styles.filterBox}>
