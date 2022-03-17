@@ -3,69 +3,83 @@ import { createSelector } from '@reduxjs/toolkit';
 const getAllCosts = state => state.costReducer.costs.costs;
 const getFilter = state => state.costReducer.filter;
 
-const getFilteredCosts = createSelector([getAllCosts, getFilter], (costs, filter) => {
-    const normalizedFilter = filter.value.toLowerCase();
+const getFilteredCosts = createSelector([getAllCosts, getFilter], (costs, {filter}) => {
+  const normalizedFilter = filter.toLowerCase();
 
-    return costs.filter(cost => cost.title.toLowerCase().includes(normalizedFilter));
+  return costs.filter(cost => cost.title.toLowerCase().includes(normalizedFilter));
 });
 
-/* const getTotalAmountCosts = state => {
-    const costs = getAllCosts(state);
+const filtredPayment = createSelector([getAllCosts, getFilter], (payments, {filter, range, category}) => {
 
-    return costs.length;
-}; */
+  const normalizedFilter = filter.toLowerCase();
+
+  if (range[1] === 0 && !category) {
+    return payments;
+  }
+
+  if (!category) {
+    return payments.filter(
+      p => p.sum >= range[0] && p.sum <= range[1] && p.title.toLowerCase().includes(normalizedFilter),
+    );
+  }
+
+  if (category) {
+    return payments.filter(
+      p =>
+        p.sum >= range[0] &&
+        p.sum <= range[1] &&
+        p.category === category &&
+        p.title.toLowerCase().includes(normalizedFilter),
+    );
+  }
+
+  return payments;
+});
 
 const getTotalAmountCosts = createSelector([getFilteredCosts], costs => {
-    return costs.length;
+  return costs.length;
 });
 
-/* const getMinSumOfCosts = state => {
-    const costs = getAllCosts(state);
-    const numbers: number[] = [];
+const getMinSumOfCosts = state => {
+  const costs = getAllCosts(state);
 
-    costs.forEach(cost => {
-        numbers.push(cost.sum);
-    });
+  return Math.min(...costs.map(c => c.sum));
+};
 
-    return Math.min(...numbers);
-}; */
+const getMaxSumOfCosts = state => {
+  const costs = getAllCosts(state);
 
-const getMinSumOfCosts = createSelector([getFilteredCosts], costs => {
-    const numbers: number[] = [];
+  return Math.max(...costs.map(c => c.sum));
+};
 
-    costs.forEach(cost => {
-        numbers.push(cost.sum);
-    });
+const getMinSumOfFilteredCosts = createSelector([getFilteredCosts], costs => {
+  const numbers: number[] = [];
 
-    return Math.min(...numbers);
+  costs.forEach(cost => {
+    numbers.push(cost.sum);
+  });
+
+  return Math.min(...numbers);
 });
 
-/* const getMaxSumOfCosts = state => {
-    const costs = getAllCosts(state);
-    const numbers: number[] = [];
+const getMaxSumOfFilteredCosts = createSelector([getFilteredCosts], costs => {
+  const numbers: number[] = [];
 
-    costs.forEach(cost => {
-        numbers.push(cost.sum);
-    });
+  costs.forEach(cost => {
+    numbers.push(cost.sum);
+  });
 
-    return Math.max(...numbers);
-}; */
-
-const getMaxSumOfCosts = createSelector([getFilteredCosts], costs => {
-    const numbers: number[] = [];
-
-    costs.forEach(cost => {
-        numbers.push(cost.sum);
-    });
-
-    return Math.max(...numbers);
+  return Math.max(...numbers);
 });
 
 export default {
-    getFilter,
-    getAllCosts,
-    getFilteredCosts,
-    getTotalAmountCosts,
-    getMinSumOfCosts,
-    getMaxSumOfCosts,
+  getFilter,
+  getAllCosts,
+  getFilteredCosts,
+  getTotalAmountCosts,
+  getMinSumOfCosts,
+  getMaxSumOfCosts,
+  getMinSumOfFilteredCosts,
+  getMaxSumOfFilteredCosts,
+  filtredPayment,
 };

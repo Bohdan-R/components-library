@@ -5,7 +5,7 @@ import InputField from '../../../../InputField';
 import Modal from '../../../../Modal';
 import styles from './AddCategoryModal.module.scss';
 
-interface AddCategoryModalProps<T> {
+interface AddCategoryModalProps {
     isOpen: boolean;
     setIsOpen(): void;
     submitFunc(e: React.FormEvent<HTMLFormElement>): void;
@@ -13,13 +13,13 @@ interface AddCategoryModalProps<T> {
     onChangeFunc(value: string): void;
 }
 
-function AddCategoryModal<T>({
+function AddCategoryModal({
     isOpen,
     setIsOpen,
     submitFunc,
     inputValue,
     onChangeFunc,
-}: AddCategoryModalProps<T>) {
+}: AddCategoryModalProps) {
     return (
         <Modal active={isOpen} setActive={setIsOpen}>
             <div className={styles.container}>

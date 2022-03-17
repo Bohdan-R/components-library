@@ -4,7 +4,7 @@ import { Position, Size } from '../../interfaces/types';
 import styles from './Tooltip.module.scss';
 
 interface TooltipProps {
-    label: string;
+    label: string | number;
     size: Size;
     position: Position;
     children: React.ReactChild | React.ReactNode;

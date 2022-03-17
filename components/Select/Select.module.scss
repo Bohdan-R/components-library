@@ -18,6 +18,10 @@
     /* box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.1); */
     cursor: pointer;
 
+    &::first-letter {
+        text-transform: uppercase;
+    }
+
     &.disabled {
         cursor: default;
     }

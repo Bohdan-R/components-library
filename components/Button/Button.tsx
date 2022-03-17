@@ -51,16 +51,16 @@ function Button<T>({
         className,
     );
     return (
-        <RootComponent
-            type={type}
-            className={disabled === false ? combineClasses : combineClassesDisabled}
-            disabled={disabled}
-            onClick={/* onClick ? () => onClick() : null */ onClick}
-            {...rest}
-        >
-            {label}
-            {children}
-        </RootComponent>
+      <RootComponent
+        type={type}
+        className={disabled ? combineClassesDisabled : combineClasses}
+        disabled={disabled}
+        onClick={/* onClick ? () => onClick() : null */ onClick}
+        {...rest}
+      >
+        {label}
+        {children}
+      </RootComponent>
     );
 }
 

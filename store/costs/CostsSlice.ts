@@ -7,19 +7,22 @@ interface CostState {
     isLoading: boolean;
     error: string;
 }
-
 interface FilterState {
-    value: string;
+  filter: string;
+  range: [number, number];
+  category: string;
 }
+
 
 const initialCostState: CostState = {
     costs: [],
     isLoading: false,
     error: null,
 };
-
 const initialFilterState: FilterState = {
-    value: '',
+  filter: '',
+  range: [0, 0],
+  category: '',
 };
 
 export const costSlice = createSlice({
@@ -27,7 +30,7 @@ export const costSlice = createSlice({
     initialState: initialCostState,
     reducers: {
         addCost(state, action: PayloadAction<ICost>) {
-            state.costs = [...state.costs, action.payload];
+            state.costs = [action.payload, ...state.costs];
             state.isLoading = false;
             state.error = null;
         },
@@ -65,22 +68,27 @@ export const costSlice = createSlice({
 });
 
 export const filterSlice = createSlice({
-    name: 'filter',
-    initialState: initialFilterState,
-    reducers: {
-        changeFilter(state, action: PayloadAction<string>) {
-            state.value = action.payload;
-        },
+  name: 'filter',
+  initialState: initialFilterState,
+  reducers: {
+    changeFilter(state, action: PayloadAction<string>) {
+      state.filter = action.payload;
     },
+    changeRange(state, action: PayloadAction<[number, number]>) {
+      state.range = action.payload;
+    },
+    changeCategory(state, action: PayloadAction<string>) {
+      state.category = action.payload;
+    },
+  },
 });
 
 export const { addCost, removeCost, editCost } = costSlice.actions;
 export const { changeFilter } = filterSlice.actions;
+export const { changeRange } = filterSlice.actions;
+export const { changeCategory } = filterSlice.actions;
 
 export const costReducer = combineReducers({
-    costs: costSlice.reducer,
-    filter: filterSlice.reducer,
+  costs: costSlice.reducer,
+  filter: filterSlice.reducer,
 });
-
-/* export default costSlice.reducer;
-export default filterSlice.reducer; */

@@ -2,5 +2,75 @@
 
 .container {
     position: relative;
+    display: flex;
+    max-width: 1400px;
     width: 100%;
+    padding: 20px;
+}
+
+.searchBox {
+    position: relative;
+    width: 100%;
+    max-width: 270px;
+    margin-right: 100px;
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        right: -50px;
+        width: 2px;
+        height: 100px;
+        background-color: #212121;
+    }
+}
+
+.searchBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 37px;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.hidden {
+        display: none;
+    }
+}
+
+.searchIcon {
+    color: $color-primary-text;
+    font-size: 16px;
+}
+
+.rangeSliderBox {
+    width: 300px;
+    margin-right: 50px;
+}
+
+.selectBox {
+    width: 100%;
+    max-width: 200px;
+    min-width: 140px;
+    margin-right: 50px;
+}
+
+.buttonBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonApply {
+    margin-bottom: 15px;
+}
+
+.titleBox {
+    margin-bottom: 10px;
+    font-weight: 500;
 }

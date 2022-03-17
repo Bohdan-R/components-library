@@ -53,3 +53,14 @@
         margin-bottom: 0;
     }
 }
+
+.selectContainer {
+    max-width: 200px;
+    margin-bottom: 25px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 180px;
+}

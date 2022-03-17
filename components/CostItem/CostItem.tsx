@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
-import { ICategory, ICost } from '../../interfaces/interfaces';
+import { ICost } from '../../interfaces/interfaces';
 import { deleteCost, updateCost } from '../../store/costs/CostsActionCreator';
 import IconButton from '../IconButton';
 import InputField from '../InputField';
@@ -11,7 +11,7 @@ import styles from './CostItem.module.scss';
 
 interface CostItemProps {
     cost: ICost;
-    selectItems: ICategory[];
+    selectItems: string[];
 }
 
 function CostItem({ cost, selectItems }: CostItemProps) {

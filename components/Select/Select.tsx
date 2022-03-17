@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import styles from './Select.module.scss';
-import { ICategory } from '../../interfaces/interfaces';
 
 const cx = classNames.bind(styles);
 
-interface SelectProps {
+interface SelectProps<T> {
     label: string;
-    items: ICategory[];
+    items: T[];
     selected: string;
     setSelected(value: string): void;
 }
 
-function Select({ label, items, selected, setSelected }: SelectProps) {
+function Select<T>({ label, items, selected, setSelected }: SelectProps<T>) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
@@ -37,16 +36,16 @@ function Select({ label, items, selected, setSelected }: SelectProps) {
                 })}
             >
                 {items &&
-                    items.map(item => (
+                    items.map((item, i) => (
                         <div
-                            key={item.id}
+                            key={i}
                             className={styles.selectItem}
                             onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                                 setSelected(e.currentTarget.textContent);
                                 setIsOpen(false);
                             }}
                         >
-                            {item.category}
+                            {item}
                         </div>
                     ))}
             </div>

@@ -50,9 +50,7 @@ function CostsPage() {
         };
         dispatch(addNewCost(newCost));
 
-        setTitle('');
-        setSum('');
-        setSelectedCategory('');
+        resetForm();
     };
     const handleSubmitNewCategory = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -68,44 +66,45 @@ function CostsPage() {
         handleIsOpenAddModal();
     };
 
+    const resetForm = () => {
+        setTitle('');
+        setSum('');
+        setSelectedCategory('');
+    }
+
     return (
-        <>
-            <div className={styles.headSection}>
-                <AddCostFrom
-                    title={title}
-                    sum={sum}
-                    selectedCategory={selectedCategory}
-                    categories={categories}
-                    handleTitle={handleTitle}
-                    handleSum={handleSum}
-                    setSelectedCategory={setSelectedCategory}
-                    handleSubmitNewCost={handleSubmitNewCost}
-                    handleIsOpenAddModal={handleIsOpenAddModal}
-                    handleIsOpenDeleteModal={handleIsOpenDeleteModal}
-                />
-                <CostsStats />
-            </div>
+      <>
+        <div className={styles.headSection}>
+          <AddCostFrom
+            title={title}
+            sum={sum}
+            selectedCategory={selectedCategory}
+            categories={categories}
+            handleTitle={handleTitle}
+            handleSum={handleSum}
+            setSelectedCategory={setSelectedCategory}
+            handleSubmitNewCost={handleSubmitNewCost}
+            handleIsOpenAddModal={handleIsOpenAddModal}
+            handleIsOpenDeleteModal={handleIsOpenDeleteModal}
+            resetForm={resetForm}
+          />
+          <CostsStats />
+        </div>
 
-            <div className={styles.filterSection}>
-                <div className={styles.filterBox}>
-                    <CostsFilter />
-                </div>
-            </div>
-            <CostList />
+        <div className={styles.filterSection}>
+          <CostsFilter />
+        </div>
+        <CostList />
 
-            <AddCategoryModal
-                isOpen={isOpenAddModal}
-                setIsOpen={handleIsOpenAddModal}
-                submitFunc={handleSubmitNewCategory}
-                inputValue={addNewCategory}
-                onChangeFunc={handleAddNewCategory}
-            />
-            <DeleteCategoryModal
-                isOpen={isOpenDeleteModal}
-                setIsOpen={handleIsOpenDeleteModal}
-                categories={categories}
-            />
-        </>
+        <AddCategoryModal
+          isOpen={isOpenAddModal}
+          setIsOpen={handleIsOpenAddModal}
+          submitFunc={handleSubmitNewCategory}
+          inputValue={addNewCategory}
+          onChangeFunc={handleAddNewCategory}
+        />
+        <DeleteCategoryModal isOpen={isOpenDeleteModal} setIsOpen={handleIsOpenDeleteModal} categories={categories} />
+      </>
     );
 }
 
