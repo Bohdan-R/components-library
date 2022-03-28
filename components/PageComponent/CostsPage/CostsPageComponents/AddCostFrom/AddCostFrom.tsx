@@ -45,7 +45,7 @@ function AddCostFrom({
         <div className={styles.inputWrap}>
           <InputField
             color="blue"
-            size="medium"
+            size="small"
             label="title"
             type="text"
             value={title}
@@ -54,15 +54,7 @@ function AddCostFrom({
           />
         </div>
         <div className={styles.inputWrap}>
-          <InputField
-            color="blue"
-            size="medium"
-            label="sum"
-            type="number"
-            value={sum}
-            as="input"
-            onChange={handleSum}
-          />
+          <InputField color="blue" size="small" label="sum" type="number" value={sum} as="input" onChange={handleSum} />
         </div>
         <div className={styles.radioContainer}>
           <div className={styles.radioTitleBox}>

@@ -6,16 +6,16 @@ import '../styles/base.scss';
 const store = setupStore();
 
 function MyApp({ Component, pageProps }) {
-    const getLayout = Component.getLayout || (page => <Layout>{page}</Layout>);
+  const getLayout = Component.getLayout || (page => <Layout>{page}</Layout>);
 
-    return (
-        <>
-            <Provider store={store}>
-                <div id="portal"></div>
-                {getLayout(<Component {...pageProps} />)}
-            </Provider>
-        </>
-    );
+  return (
+    <>
+      <Provider store={store}>
+        <div id="portal"></div>
+        {getLayout(<Component {...pageProps} />)}
+      </Provider>
+    </>
+  );
 }
 
 export default MyApp;

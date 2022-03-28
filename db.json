@@ -36,74 +36,96 @@
     {
       "id": "e2s-WUaaS",
       "category": "Comunal payment"
+    },
+    {
+      "id": "Pbm6bgwJO",
+      "category": "clothes"
     }
   ],
   "costs": [
     {
-      "id": "YnMwSdlD5",
-      "title": "Pineapple",
-      "sum": "10",
-      "category": "Food"
-    },
-    {
-      "id": "j9ZZWBmt_",
-      "title": "Sushi",
-      "sum": "180",
-      "category": "Food"
-    },
-    {
-      "id": "LQKAB-wlJ",
-      "title": "Computer mouse",
-      "sum": "2700",
-      "category": "Sport"
-    },
-    {
-      "id": "XZdddnYH8",
-      "title": "Hrukalo",
-      "sum": "1000",
-      "category": "Sport"
-    },
-    {
-      "id": "M7QxcLzSq",
+      "id": "OzdZxCkEC",
       "title": "Apple",
-      "sum": "10",
-      "category": "Food"
+      "sum": "234",
+      "category": "Food",
+      "date": "18 March, 2022"
     },
     {
-      "id": "lJCZ-5qPR",
-      "title": "dfdfddf",
-      "sum": "10",
-      "category": "Sport"
+      "id": "5bPxiRVD7",
+      "title": "Milk",
+      "sum": "120",
+      "category": "Food",
+      "date": "10 March, 2022"
     },
     {
-      "id": "N9vGb6lIQ",
-      "title": "sdfdsf",
-      "sum": "345",
-      "category": "Other"
+      "id": "BOOdJhePW",
+      "title": "Ball",
+      "sum": "520",
+      "category": "Sport",
+      "date": "10 March, 2022"
     },
     {
-      "id": "fN0xhX_AD",
-      "title": "Food 2",
-      "sum": "1458",
-      "category": "Food"
+      "id": "P9O3WPiqk",
+      "title": "Tennis",
+      "sum": "550",
+      "category": "Sport",
+      "date": "17 March, 2022"
     },
     {
-      "id": "vMWEw8dU9",
-      "title": "Juch",
-      "sum": "458",
-      "category": "Comunal payment"
+      "id": "PV0m7TDai",
+      "title": "Comunal (february)",
+      "sum": "3500",
+      "category": "Comunal payment",
+      "date": "28 February, 2022"
     },
     {
-      "id": "9AFyOiyQ5",
+      "id": "l5KST2gp5",
+      "title": "Electric",
+      "sum": "500",
+      "category": "Comunal payment",
+      "date": "15 March, 2022"
+    },
+    {
+      "id": "oT7FAn7no",
       "title": "PUBG",
       "sum": "450",
-      "category": "Games"
+      "category": "Games",
+      "date": "09 March, 2022"
     },
     {
-      "id": "DT9Y0hISa",
-      "title": "фівіфв",
-      "sum": "1231",
-      "category": "Other"
+      "id": "fkJ-RTDcp",
+      "title": "Presents",
+      "sum": "2450",
+      "category": "Other",
+      "date": "14 March, 2022"
+    },
+    {
+      "id": "Gq2yklAwr",
+      "title": "Mouse",
+      "sum": "2700",
+      "category": "Other",
+      "date": "21 March, 2022"
+    },
+    {
+      "id": "3SJ1x_Ywq",
+      "title": "aaa",
+      "sum": "23",
+      "category": "Other",
+      "date": "21 March, 2022"
+    },
+    {
+      "id": "6m35qap6F",
+      "title": "Food",
+      "sum": "2400",
+      "category": "Food",
+      "date": "22 March, 2022"
+    },
+    {
+      "id": "aVsz-RV-8",
+      "title": "Abonement",
+      "sum": "3200",
+      "category": "Sport",
+      "date": "22 March, 2022"
     }
   ]
 }

@@ -3,18 +3,24 @@
 .container {
     position: relative;
     display: flex;
-    max-width: 1400px;
+    flex-direction: column;
+    max-width: 1600px;
     width: 100%;
     padding: 20px;
+}
+
+.filterContainer {
+    display: flex;
+    width: 100%;
 }
 
 .searchBox {
     position: relative;
     width: 100%;
     max-width: 270px;
-    margin-right: 100px;
+    margin-right: 50px;
 
-    &::after {
+    /* &::after {
         position: absolute;
         content: '';
         top: 0;
@@ -22,7 +28,7 @@
         width: 2px;
         height: 100px;
         background-color: #212121;
-    }
+    } */
 }
 
 .searchBtn {
@@ -51,6 +57,7 @@
 
 .rangeSliderBox {
     width: 300px;
+    min-width: 150px;
     margin-right: 50px;
 }
 
@@ -61,9 +68,25 @@
     margin-right: 50px;
 }
 
+.sortingBox {
+    width: 100%;
+    max-width: 200px;
+    min-width: 140px;
+    margin-right: 50px;
+}
+
+.dateRangeBox {
+    width: 100%;
+    max-width: 220px;
+    min-width: 200px;
+    margin-right: 50px;
+}
+
 .buttonBox {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    max-width: 200px;
+    margin-top: 20px;
 }
 
 .buttonApply {
