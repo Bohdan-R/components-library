@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import classNames from 'classnames/bind';
-import {
-    AiOutlineHome,
-    AiOutlineUnorderedList,
-    AiOutlinePlusCircle,
-} from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUnorderedList, AiOutlinePlusCircle } from 'react-icons/ai';
 import { FaMoneyBillAlt } from 'react-icons/fa';
 import { GiNotebook } from 'react-icons/gi';
 import styles from './Drawer.module.scss';
@@ -25,10 +21,10 @@ interface IAccordion {
 } */
 
 function Drawer() {
-    const router = useRouter();
-    const [active, setActive] = useState<string>('');
+  const router = useRouter();
+  const [active, setActive] = useState<string>('');
 
-    /*  const makeLinks2 = [
+  /*  const makeLinks2 = [
         {
             title: 'Todos',
             subMenu: [
@@ -61,59 +57,57 @@ function Drawer() {
         },
     ]; */
 
-    const makeLinks = [
-        {
-            title: 'Todos',
-            path: '/todos',
-            icon: AiOutlineUnorderedList,
-        },
-        {
-            title: 'Create new todo',
-            path: '/create-todo',
-            icon: AiOutlinePlusCircle,
-        },
-        { title: 'Note list', path: '/notes', icon: GiNotebook },
-        {
-            title: 'Create new note',
-            path: '/create-note',
-            icon: AiOutlinePlusCircle,
-        },
-        {
-            title: 'Cost accounting',
-            path: '/costs',
-            icon: FaMoneyBillAlt,
-        },
-    ];
+  const makeLinks = [
+    {
+      title: 'Todos',
+      path: '/todos',
+      icon: AiOutlineUnorderedList,
+    },
+    {
+      title: 'Create new todo',
+      path: '/create-todo',
+      icon: AiOutlinePlusCircle,
+    },
+    { title: 'Note list', path: '/notes', icon: GiNotebook },
+    {
+      title: 'Grid',
+      path: '/grid',
+      icon: AiOutlinePlusCircle,
+    },
+    {
+      title: 'Cost accounting',
+      path: '/costs',
+      icon: FaMoneyBillAlt,
+    },
+  ];
 
-    return (
-        <div className={styles.drawer}>
-            <ul className={styles['link-list']}>
-                {makeLinks.map(link => (
-                    <li
-                        key={link.title}
-                        className={cx('link-item', {
-                            active: router.pathname === link.path,
-                        })}
-                    >
-                        <Link href={link.path}>
-                            <a className={styles.link}>
-                                <span className={styles['link-icon']}>
-                                    {<link.icon />}
-                                </span>
-                                {link.title}
-                            </a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div className={styles.drawer}>
+      <ul className={styles['link-list']}>
+        {makeLinks.map(link => (
+          <li
+            key={link.title}
+            className={cx('link-item', {
+              active: router.pathname === link.path,
+            })}
+          >
+            <Link href={link.path}>
+              <a className={styles.link}>
+                <span className={styles['link-icon']}>{<link.icon />}</span>
+                {link.title}
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default Drawer;
 
 {
-    /* <div className={styles.drawer}>
+  /* <div className={styles.drawer}>
     <ul className={styles['link-list']}>
         {makeLinks.map(link => (
             <li
@@ -137,7 +131,7 @@ export default Drawer;
 }
 
 {
-    /* <div className={styles.drawer}>
+  /* <div className={styles.drawer}>
             <div className={styles.linkList}>
                 {makeLinks.map(({ title, subMenu }) => {
                     const combineClasses = cx('subMenuList', {

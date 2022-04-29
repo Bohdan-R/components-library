@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 import { Provider } from 'react-redux';
 import { setupStore } from '../store/store';
+import Grid from './grid';
 import '../styles/base.scss';
 
 const store = setupStore();
