@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import styles from './Select.module.scss';
@@ -6,7 +6,7 @@ import styles from './Select.module.scss';
 const cx = classNames.bind(styles);
 
 interface SelectProps<T> {
-  label: string;
+  label?: string;
   items: T[];
   selected: string;
   setSelected(value: string): void;
@@ -14,16 +14,31 @@ interface SelectProps<T> {
 
 function Select<T>({ label, items, selected, setSelected }: SelectProps<T>) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
+
+  const handleClickOutside = e => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <div className={styles.select}>
       <div
+        ref={ref}
         className={cx('selectHeader', {
           disabled: !items,
         })}
         onClick={items ? () => setIsOpen(!isOpen) : null}
       >
-        {selected ? selected : label}
+        <span className={styles.selectLabel}>{selected ? selected : label}</span>
         <MdOutlineKeyboardArrowDown
           className={cx('selectIcon', {
             isOpen: isOpen === true,

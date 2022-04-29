@@ -52,8 +52,6 @@ function CostsFilter() {
 
   const categoriesOfPayment = categories.map(({ category }) => category);
 
-  console.log('dateRange', dateRange);
-
   useEffect(() => {
     if (maxValue === 0) {
       return;
