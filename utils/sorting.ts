@@ -1,1 +1,1 @@
-export const sorting = ['from largest to smallest sum', 'from smallest to largest sum', 'new date', 'old date'];
+export const sorting = ['large -> small sum', 'small -> large sum', 'current -> past date', 'past -> current date'];

@@ -5,31 +5,23 @@
 }
 
 .itemContent {
-    position: relative;
-    width: calc(100% / 5);
-    
-    padding: 10px 15px; 
+    position: relative;  
+    padding: 10px 10px; 
 
-    &:last-child {
-        border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+
+    &:first-child {
+        text-align: center;
     }
-
-    .item:nth-child(even) & {
-        background-color: #fafafa;
-    }
-}
-
-.decoration {
-    position: absolute;
-    top: 10%;
-    right: 0;
-    width: 2px;
-    height: 80%;
-    background-color: #e0e0e0;
 }
 
 .btnBox {
     display: flex;
     justify-content: space-between;
-    max-width: 85px;
+    max-width: 75px;
+}
+
+.input {
+    min-width: 110px;
+    max-width: 95%;
 }

@@ -5,6 +5,8 @@ import CostItem from '../CostItem';
 import costsSelectors from '../../store/costs/CostsSelectors';
 import styles from './CostList.module.scss';
 
+const headerTitle = ['#', 'Name', 'Sum', 'Category', 'Date', ''];
+
 function CostList() {
   const costs = useSelector(costsSelectors.filteredPayments);
   const { categories } = useAppSelector(state => state.categoryReducer);
@@ -14,28 +16,16 @@ function CostList() {
       <table className={styles.table}>
         <thead>
           <tr className={styles.header}>
-            <th className={styles.headerItem}>
-              Title
-              <span className={styles.decoration}></span>
-            </th>
-            <th className={styles.headerItem}>
-              Sum
-              <span className={styles.decoration}></span>
-            </th>
-            <th className={styles.headerItem}>
-              Category
-              <span className={styles.decoration}></span>
-            </th>
-            <th className={styles.headerItem}>
-              Date
-              <span className={styles.decoration}></span>
-            </th>
-            <th className={styles.headerItem}></th>
+            {headerTitle.map(title => (
+              <th key={title} className={styles.headerItem}>
+                {title}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          {costs.map(cost => (
-            <CostItem key={cost.id} cost={cost} selectItems={categories.map(c => c.category)} />
+          {costs.map((cost, i) => (
+            <CostItem key={cost.id} cost={cost} number={i + 1} selectItems={categories.map(c => c.category)} />
           ))}
         </tbody>
       </table>

@@ -14,9 +14,10 @@ import styles from './CostItem.module.scss';
 interface CostItemProps {
   cost: ICost;
   selectItems: string[];
+  number: number;
 }
 
-function CostItem({ cost, selectItems }: CostItemProps) {
+function CostItem({ cost, selectItems, number }: CostItemProps) {
   const dispatch = useAppDispatch();
   const [isChange, setIsChange] = useState<boolean>(false);
   const [editCategory, setEditCategory] = useState<string>(cost.category || '');
@@ -50,35 +51,37 @@ function CostItem({ cost, selectItems }: CostItemProps) {
   };
 
   const Input = ({ onClick, value }) => {
-    return <InputField value={value} color="blue" size="small" type="text" onClick={onClick} as="input" />;
+    return (
+      <InputField
+        classNameInput={styles.input}
+        value={value}
+        color="blue"
+        size="small"
+        type="text"
+        onClick={onClick}
+        as="input"
+      />
+    );
   };
 
   return (
     <>
       {isChange === false ? (
         <tr className={styles.item}>
-          <td className={styles.itemContent}>
-            {cost.title}
-            <span className={styles.decoration}></span>
-          </td>
-          <td className={styles.itemContent}>
-            {cost.sum}
-            <span className={styles.decoration}></span>
-          </td>
-          <td className={styles.itemContent}>
-            {cost.category}
-            <span className={styles.decoration}></span>
-          </td>
-          <td className={styles.itemContent}>
-            {cost.date}
-            <span className={styles.decoration}></span>
-          </td>
+          <td className={styles.itemContent}>{number}</td>
+          {Object.values(cost)
+            .slice(1)
+            .map(c => (
+              <td key={c} className={styles.itemContent}>
+                {c}
+              </td>
+            ))}
           <td className={styles.itemContent}>
             <div className={styles.btnBox}>
-              <Tooltip label="Edit" size="large" position="top">
+              <Tooltip label="Edit" size="medium" position="top">
                 <IconButton type="button" variant="edit" size="medium" onClick={handleIsChange} />
               </Tooltip>
-              <Tooltip label="Delete" size="large" position="top">
+              <Tooltip label="Delete" size="medium" position="top">
                 <IconButton
                   type="button"
                   variant="delete"
@@ -91,28 +94,41 @@ function CostItem({ cost, selectItems }: CostItemProps) {
         </tr>
       ) : (
         <tr className={styles.item}>
+          <td className={styles.itemContent}>{number}</td>
           <td className={styles.itemContent}>
-            <InputField color="blue" size="small" type="text" value={editTitle} as="input" onChange={handleEditTitle} />
-            <span className={styles.decoration}></span>
+            <InputField
+              classNameInput={styles.input}
+              color="blue"
+              size="small"
+              type="text"
+              value={editTitle}
+              as="input"
+              onChange={handleEditTitle}
+            />
           </td>
           <td className={styles.itemContent}>
-            <InputField color="blue" size="small" type="number" value={editSum} as="input" onChange={handleEditSum} />
-            <span className={styles.decoration}></span>
+            <InputField
+              classNameInput={styles.input}
+              color="blue"
+              size="small"
+              type="number"
+              value={editSum}
+              as="input"
+              onChange={handleEditSum}
+            />
           </td>
           <td className={styles.itemContent}>
             <Select label="Category" items={selectItems} selected={editCategory} setSelected={setEditCategory} />
-            <span className={styles.decoration}></span>
           </td>
           <td className={styles.itemContent}>
             <DatePicker selected={editDate} customInput={<Input />} onChange={date => setEditDate(date)} />
-            <span className={styles.decoration}></span>
           </td>
           <td className={styles.itemContent}>
             <div className={styles.btnBox}>
-              <Tooltip label="Accept" size="large" position="top">
+              <Tooltip label="Accept" size="medium" position="top">
                 <IconButton type="button" variant="confirm" size="medium" onClick={handleSubmit} />
               </Tooltip>
-              <Tooltip label="Cancel" size="large" position="top">
+              <Tooltip label="Cancel" size="medium" position="top">
                 <IconButton type="button" variant="cancel" size="medium" onClick={handleIsChange} />
               </Tooltip>
             </div>

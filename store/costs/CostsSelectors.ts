@@ -28,19 +28,19 @@ const filteredPayments = createSelector(
       );
     }
 
-    if (sorting === 'from largest to smallest sum') {
+    if (sorting === 'large -> small sum') {
       filteredPayments = filteredPayments.slice().sort((a, b) => b.sum - a.sum);
       return filteredPayments;
     }
-    if (sorting === 'from smallest to largest sum') {
+    if (sorting === 'small -> large sum') {
       filteredPayments = filteredPayments.slice().sort((a, b) => a.sum - b.sum);
       return filteredPayments;
     }
-    if (sorting === 'old date') {
+    if (sorting === 'past -> current date') {
       filteredPayments = filteredPayments.slice().sort((a, b) => new Moment(a.date) - new Moment(b.date));
       return filteredPayments;
     }
-    if (sorting === 'new date') {
+    if (sorting === 'current -> past date') {
       filteredPayments = filteredPayments.slice().sort((a, b) => new Moment(b.date) - new Moment(a.date));
       return filteredPayments;
     }
