@@ -213,7 +213,7 @@ function CostsFilter() {
               setDateRange(update);
             }}
             customInput={<Input />}
-            /* isClearable={true} */
+            isClearable={true}
           />
         </div>
       </div>

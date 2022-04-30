@@ -7,6 +7,9 @@
     max-width: 1600px;
     width: 100%;
     padding: 20px;
+
+    border-radius: 10px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0,0.15);
 }
 
 .filterContainer {
@@ -58,6 +61,7 @@
 .rangeSliderBox {
     width: 300px;
     min-width: 150px;
+    padding: 0 10px;
     margin-right: 50px;
 }
 

@@ -6,15 +6,11 @@ import costsSelectors from '../../store/costs/CostsSelectors';
 import styles from './CostList.module.scss';
 
 function CostList() {
-  const costs = useSelector(costsSelectors.sortedPayment);
+  const costs = useSelector(costsSelectors.filteredPayments);
   const { categories } = useAppSelector(state => state.categoryReducer);
 
-  /* console.log("111111111", costs);
-    const arrCategories: string[] = [];
-    categories.forEach(c => arrCategories.push(c.category)); */
-
   return (
-    <>
+    <div className={styles.container}>
       <table className={styles.table}>
         <thead>
           <tr className={styles.header}>
@@ -43,7 +39,7 @@ function CostList() {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 
