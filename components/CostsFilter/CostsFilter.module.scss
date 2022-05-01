@@ -1,103 +1,70 @@
 @import '../../styles/colors';
 
-.container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    max-width: 1600px;
+.container { 
+    padding: 30px;
     width: 100%;
-    padding: 20px;
-
-    border-radius: 10px;
-    box-shadow: 0px 8px 30px rgba(0, 0, 0,0.15);
 }
 
 .filterContainer {
-    display: flex;
-    width: 100%;
+    display: grid;
+    grid-template-areas: 
+    'filtersUp buttons'
+    'filtersDow buttons';
+    grid-template-columns: minmax(680px, 830px) 100px;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
 }
 
-.searchBox {
+.filtersUp {
+    grid-area: filtersUp;
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+}
+
+.filtersDow {
+    grid-area: filtersDow;
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+}
+
+.buttonWrapper {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+
+    & .buttonApply {
+        margin-bottom: 30px;
+    }
+}
+
+.filterBox {
     position: relative;
     width: 100%;
-    max-width: 270px;
-    margin-right: 50px;
+    min-width: 200px;
+    max-width: 250px;
+    margin-right: 40px;
 
-    /* &::after {
-        position: absolute;
-        content: '';
-        top: 0;
-        right: -50px;
-        width: 2px;
-        height: 100px;
-        background-color: #212121;
-    } */
-}
-
-.searchBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 37px;
-    right: 2px;
-    width: 24px;
-    height: 24px;
-
-    &:hover {
-        cursor: pointer;
+    &:last-child {
+        margin-right: 0;
     }
-
-    &.hidden {
-        display: none;
-    }
-}
-
-.searchIcon {
-    color: $color-primary-text;
-    font-size: 16px;
 }
 
 .rangeSliderBox {
-    width: 300px;
+    width: 100%;
     min-width: 150px;
+    max-width: 540px;
     padding: 0 10px;
-    margin-right: 50px;
+
+    & .rangeWrapper {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
-.selectBox {
-    width: 100%;
-    max-width: 200px;
-    min-width: 140px;
-    margin-right: 50px;
-}
-
-.sortingBox {
-    width: 100%;
-    max-width: 200px;
-    min-width: 140px;
-    margin-right: 50px;
-}
-
-.dateRangeBox {
-    width: 100%;
-    max-width: 220px;
-    min-width: 200px;
-    margin-right: 50px;
-}
-
-.buttonBox {
-    display: flex;
-    justify-content: space-between;
-    max-width: 200px;
-    margin-top: 20px;
-}
-
-.buttonApply {
-    margin-bottom: 15px;
-}
-
-.titleBox {
+.title {
     margin-bottom: 10px;
     font-weight: 500;
 }

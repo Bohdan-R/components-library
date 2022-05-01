@@ -10,11 +10,13 @@ interface SelectProps<T> {
   items: T[];
   selected: string;
   setSelected(value: string): void;
+  className?: string;
 }
 
-function Select<T>({ label, items, selected, setSelected }: SelectProps<T>) {
+function Select<T>({ label, items, selected, setSelected, className }: SelectProps<T>) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
+  const combineClasses = classNames(styles.select, className);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
@@ -30,7 +32,7 @@ function Select<T>({ label, items, selected, setSelected }: SelectProps<T>) {
   };
 
   return (
-    <div className={styles.select}>
+    <div className={combineClasses}>
       <div
         ref={ref}
         className={cx('selectHeader', {

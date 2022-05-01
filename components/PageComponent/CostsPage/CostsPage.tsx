@@ -93,10 +93,10 @@ function CostsPage() {
         <CostsStats />
       </div>
 
-      <div className={styles.filterSection}>
+      <div className={styles.tableSection}>
         <CostsFilter />
+        <CostList />
       </div>
-      <CostList />
 
       <AddCategoryModal
         isOpen={isOpenAddModal}

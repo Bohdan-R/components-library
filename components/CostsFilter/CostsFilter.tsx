@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import _ from 'lodash';
-import moment from 'moment';
-import { Slider } from '@mui/material';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import 'react-datepicker/dist/react-datepicker.css';
-import InputField from '../InputField';
-import costsSelectors from '../../store/costs/CostsSelectors';
-import styles from './CostsFilter.module.scss';
 import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
+import _ from 'lodash';
+import { Slider } from '@mui/material';
+import DatePicker from 'react-datepicker';
+import classNames from 'classnames/bind';
+
+import InputField from '../InputField';
+import costsSelectors from '../../store/costs/CostsSelectors';
 import {
   changeFilter,
   changeCategory,
@@ -17,11 +16,15 @@ import {
   changeDateRange,
   changeSorting,
 } from '../../store/costs/CostsSlice';
-import classNames from 'classnames/bind';
+
 import Select from '../Select';
 import Button from '../Button';
-import { IoCloseSharp } from 'react-icons/io5';
+
 import { sorting } from '../../utils/sorting';
+
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import styles from './CostsFilter.module.scss';
 
 const cx = classNames.bind(styles);
 const minDistance = 50;
@@ -29,7 +32,6 @@ const minDistance = 50;
 function CostsFilter() {
   const dispatch = useAppDispatch();
   const { categories } = useAppSelector(state => state.categoryReducer);
-  const payments = useSelector(costsSelectors.getAllCosts);
   const { filter } = useSelector(costsSelectors.getFilter);
   const maxValue = useSelector(costsSelectors.getMaxSumOfCosts);
 
@@ -63,31 +65,9 @@ function CostsFilter() {
     resetFilters();
   }, []);
 
-  /* console.log('payments', Boolean(payments.length === 0));
-  console.log('filter', filter);
-  console.log('filter', Boolean(filter !== ''));
-  console.log('rangeValue-1', Boolean(rangeValue[0] !== 0));
-  console.log('rangeValue-2', Boolean(rangeValue[1] !== maxValue));
-  console.log('selectedCategory', Boolean(selectedCategory !== ''));
-  console.log('selectedSorting', Boolean(selectedSorting !== ''));
-  console.log(
-    'TTTTTTT',
-    payments.length === 0 ||
-      filter ||
-      rangeValue[0] !== 0 ||
-      rangeValue[1] !== maxValue ||
-      selectedCategory ||
-      selectedSorting,
-  ); */
   const handleSearch = (value: string) => {
     dispatch(changeFilter(value));
   };
-
-  /* const handleDate = (value: Date) => {
-    const dateToString = moment(value).format('MM/DD/YYYY');
-
-    setStartDate(dateToString);
-  }; */
 
   const handleRangeValue = (event: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) {
@@ -121,125 +101,97 @@ function CostsFilter() {
     dispatch(changeSorting(''));
   };
 
-  /* const isDisabled = () => {
-    if (payments.length === 0) {
-      return true;
-    }
-
-    if (
-      filter !== '' ||
-      rangeValue[0] !== 0 ||
-      rangeValue[1] !== maxValue ||
-      selectedCategory !== '' ||
-      selectedSorting !== ''
-    ) {
-      return false;
-    }
-
-    return true;
-  }; */
-
   const Input = ({ onClick, value }) => {
     return <InputField value={value} label="date" color="blue" size="small" type="text" onClick={onClick} as="input" />;
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.filterContainer}>
-        <div className={styles.searchBox}>
-          <div className={styles.titleBox}>Search title</div>
-          <InputField
-            color="blue"
-            size="small"
-            label="search"
-            type="text"
-            value={filter}
-            as="input"
-            autoComplete="off"
-            onChange={handleSearch}
-          />
-          {/* <span
-          className={cx('searchBtn', {
-            hidden: !filter,
-          })}
-          onClick={resetSearch}
-        >
-          <IoCloseSharp className={styles.searchIcon} />
-        </span> */}
-        </div>
+    <div>
+      <div className={styles.container}>
+        <div className={styles.filterContainer}>
+          <div className={styles.filtersUp}>
+            <div className={styles.filterBox}>
+              <div className={styles.title}>Search title</div>
+              <InputField
+                color="blue"
+                size="small"
+                label="search"
+                type="text"
+                value={filter}
+                as="input"
+                autoComplete="off"
+                onChange={handleSearch}
+              />
+            </div>
 
-        <div className={styles.rangeSliderBox}>
-          {rangeValue && (
-            <>
-              <div className={styles.titleBox}>Sum of payment</div>
-              <span>
-                {rangeValue[0]} - {rangeValue[1]}
-              </span>
-            </>
-          )}
-          <Slider
-            step={50}
-            min={0}
-            max={maxValue === 0 ? 100 : maxValue}
-            value={rangeValue}
-            onChange={handleRangeValue}
-            marks={rangeMarks}
-            disableSwap
-          />
-        </div>
+            <div className={styles.rangeSliderBox}>
+              <div className={styles.title}>Sum of payment</div>
+              <div className={styles.rangeWrapper}>
+                <span>{rangeValue[0]}</span>
+                <span>{rangeValue[1]}</span>
+              </div>
+              <Slider
+                step={50}
+                min={0}
+                max={maxValue === 0 ? 100 : maxValue}
+                value={rangeValue}
+                onChange={handleRangeValue}
+                disableSwap
+              />
+            </div>
+          </div>
+          <div className={styles.filtersDow}>
+            <div className={styles.filterBox}>
+              <div className={styles.title}>Choose category</div>
+              <Select
+                label="All category"
+                items={categoriesOfPayment}
+                selected={selectedCategory}
+                setSelected={setSelectedCategory}
+              />
+            </div>
 
-        <div className={styles.selectBox}>
-          <div className={styles.titleBox}>Choose category</div>
-          <Select
-            label="All category"
-            items={categoriesOfPayment}
-            selected={selectedCategory}
-            setSelected={setSelectedCategory}
-          />
-        </div>
+            <div className={styles.filterBox}>
+              <div className={styles.title}>Choose sorting</div>
+              <Select label="Sorting by" items={sorting} selected={selectedSorting} setSelected={setSelectedSorting} />
+            </div>
 
-        <div className={styles.sortingBox}>
-          <div className={styles.titleBox}>Choose sorting</div>
-          <Select label="Sorting by" items={sorting} selected={selectedSorting} setSelected={setSelectedSorting} />
+            <div className={styles.filterBox}>
+              <div className={styles.title}>Choose date</div>
+              <DatePicker
+                selectsRange={true}
+                startDate={startDate}
+                endDate={endDate}
+                onChange={update => {
+                  setDateRange(update);
+                }}
+                customInput={<Input />}
+                isClearable={true}
+              />
+            </div>
+          </div>
+          <div className={styles.buttonWrapper}>
+            <Button
+              as="button"
+              color="blue"
+              size="medium"
+              variant="contained"
+              type="button"
+              label="Apply"
+              onClick={handleApplyFilters}
+              className={styles.buttonApply}
+            />
+            <Button
+              as="button"
+              color="blue"
+              size="medium"
+              variant="contained"
+              type="button"
+              label="Reset"
+              onClick={resetFilters}
+            />
+          </div>
         </div>
-
-        <div className={styles.dateRangeBox}>
-          <div className={styles.titleBox}>Choose date</div>
-          <DatePicker
-            selectsRange={true}
-            startDate={startDate}
-            endDate={endDate}
-            onChange={update => {
-              setDateRange(update);
-            }}
-            customInput={<Input />}
-            isClearable={true}
-          />
-        </div>
-      </div>
-
-      <div className={styles.buttonBox}>
-        <Button
-          as="button"
-          color="blue"
-          size="mediumLong"
-          variant="contained"
-          type="button"
-          label="Apply"
-          /* disabled={isDisabled()} */
-          onClick={handleApplyFilters}
-          className={styles.buttonApply}
-        />
-        <Button
-          as="button"
-          color="blue"
-          size="mediumLong"
-          variant="contained"
-          type="button"
-          label="Reset"
-          /* disabled={isDisabled()} */
-          onClick={resetFilters}
-        />
       </div>
     </div>
   );
