@@ -7,20 +7,22 @@ import { Slider } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import classNames from 'classnames/bind';
 
-import InputField from '../InputField';
 import costsSelectors from '../../store/costs/CostsSelectors';
 import {
   changeFilter,
   changeCategory,
   changeRange,
-  changeDateRange,
+  changeDate,
   changeSorting,
+  changeYear,
+  changeMonth,
 } from '../../store/costs/CostsSlice';
 
+import InputField from '../InputField';
 import Select from '../Select';
 import Button from '../Button';
 
-import { sorting } from '../../utils/sorting';
+import { sorting, months } from '../../utils/constants';
 
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -34,23 +36,14 @@ function CostsFilter() {
   const { categories } = useAppSelector(state => state.categoryReducer);
   const { filter } = useSelector(costsSelectors.getFilter);
   const maxValue = useSelector(costsSelectors.getMaxSumOfCosts);
+  const yearsOfPayments = useSelector(costsSelectors.getAllYearsOfPayments);
 
   const [rangeValue, setRangeValue] = useState<[number, number]>([0, 100]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedSorting, setSelectedSorting] = useState<string>('');
-  const [dateRange, setDateRange] = useState([null, null]);
-  const [startDate, endDate] = dateRange;
-
-  const rangeMarks = [
-    {
-      value: 0,
-      label: 0,
-    },
-    {
-      value: maxValue === 0 ? 100 : maxValue,
-      label: maxValue === 0 ? 100 : maxValue,
-    },
-  ];
+  const [selectedYear, setSelectedYear] = useState<string>('');
+  const [selectedMonth, setSelectedMonth] = useState<string>('');
+  const [selectedDate, setSelectedDate] = useState<Date>(null);
 
   const categoriesOfPayment = categories.map(({ category }) => category);
 
@@ -81,24 +74,37 @@ function CostsFilter() {
     }
   };
 
+  const handleNumberOfMonth = (month: string) => {
+    const selectedMonth = month && Object.entries(months).find(m => m[1] === month);
+    const numberOfMonth = Number(selectedMonth[0]);
+    return numberOfMonth;
+  };
+
   const handleApplyFilters = () => {
+    dispatch(changeFilter(filter));
     dispatch(changeRange(rangeValue));
     dispatch(changeCategory(selectedCategory));
-    dispatch(changeDateRange([startDate, endDate]));
+    dispatch(changeDate(selectedDate));
     dispatch(changeSorting(selectedSorting));
+    dispatch(changeYear(selectedYear));
+    dispatch(changeMonth(handleNumberOfMonth(selectedMonth)));
   };
 
   const resetFilters = () => {
     setSelectedCategory('');
     setRangeValue([0, maxValue]);
     setSelectedSorting('');
-    setDateRange([null, null]);
+    setSelectedDate(null);
+    setSelectedYear('');
+    setSelectedMonth('');
 
     dispatch(changeFilter(''));
     dispatch(changeCategory(''));
     dispatch(changeRange([0, maxValue]));
-    dispatch(changeDateRange([null, null]));
+    dispatch(changeDate(selectedDate));
     dispatch(changeSorting(''));
+    dispatch(changeYear(''));
+    dispatch(changeMonth(null));
   };
 
   const Input = ({ onClick, value }) => {
@@ -159,14 +165,10 @@ function CostsFilter() {
             <div className={styles.filterBox}>
               <div className={styles.title}>Choose date</div>
               <DatePicker
-                selectsRange={true}
-                startDate={startDate}
-                endDate={endDate}
-                onChange={update => {
-                  setDateRange(update);
-                }}
+                selected={selectedDate}
                 customInput={<Input />}
-                isClearable={true}
+                onChange={date => setSelectedDate(date)}
+                isClearable
               />
             </div>
           </div>
@@ -191,6 +193,15 @@ function CostsFilter() {
               onClick={resetFilters}
             />
           </div>
+        </div>
+        <div className={styles.filterBox}>
+          <div className={styles.title}>Choose Year</div>
+          <Select label="Year" items={yearsOfPayments} selected={selectedYear} setSelected={setSelectedYear} />
+        </div>
+
+        <div className={styles.filterBox}>
+          <div className={styles.title}>Choose Month</div>
+          <Select label="Month" items={Object.values(months)} selected={selectedMonth} setSelected={setSelectedMonth} />
         </div>
       </div>
     </div>

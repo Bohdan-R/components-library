@@ -11,6 +11,8 @@ function CostList() {
   const costs = useSelector(costsSelectors.filteredPayments);
   const { categories } = useAppSelector(state => state.categoryReducer);
 
+  console.log('costs', costs);
+
   return (
     <div className={styles.container}>
       <table className={styles.table}>

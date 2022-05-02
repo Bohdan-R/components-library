@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import moment from 'moment';
-import DatePicker from 'react-datepicker';
 import { useAppDispatch } from '../../hooks/redux';
-import { ICost } from '../../interfaces/interfaces';
-import { deleteCost, updateCost } from '../../store/costs/CostsActionCreator';
+import DatePicker from 'react-datepicker';
+
 import IconButton from '../IconButton';
 import InputField from '../InputField';
 import Select from '../Select';
 import Tooltip from '../Tooltip';
+
+import { deleteCost, updateCost } from '../../store/costs/CostsActionCreator';
+
+import { ICost } from '../../interfaces/interfaces';
+import { dateOptions } from '../../utils/constants';
+import { setRuFormatDate } from '../../utils/helpers';
 
 import styles from './CostItem.module.scss';
 
@@ -38,7 +42,7 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
       title: editTitle,
       sum: editSum,
       category: editCategory,
-      date: moment(editDate).format('DD MMMM, YYYY'),
+      date: editDate.toLocaleString('en-US', dateOptions),
     };
 
     dispatch(updateCost(editedCost));
@@ -69,11 +73,11 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
       {isChange === false ? (
         <tr className={styles.item}>
           <td className={styles.itemContent}>{number}</td>
-          {Object.values(cost)
+          {Object.entries(cost)
             .slice(1)
             .map(c => (
-              <td key={c} className={styles.itemContent}>
-                {c}
+              <td key={c[1]} className={styles.itemContent}>
+                {c[0] === 'date' ? setRuFormatDate(c[1]) : c[1]}
               </td>
             ))}
           <td className={styles.itemContent}>

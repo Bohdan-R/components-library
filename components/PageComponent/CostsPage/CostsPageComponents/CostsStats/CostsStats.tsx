@@ -5,7 +5,7 @@ import costsSelectors from '../../../../../store/costs/CostsSelectors';
 import styles from './CostsStats.module.scss';
 
 function CostsStats() {
-  const amount = useSelector(costsSelectors.getAllCosts);
+  const amount = useSelector(costsSelectors.getAllPayments);
   const minValue = useSelector(costsSelectors.getMinSumOfCosts);
   const maxValue = useSelector(costsSelectors.getMaxSumOfCosts);
 

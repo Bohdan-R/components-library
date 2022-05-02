@@ -2,30 +2,34 @@ import { createSlice, PayloadAction, combineReducers } from '@reduxjs/toolkit';
 import { ICost } from '../../interfaces/interfaces';
 import { addNewCost, fetchCosts } from './CostsActionCreator';
 
-interface CostState {
+interface ICostState {
   costs: ICost[];
   isLoading: boolean;
   error: string;
 }
-interface FilterState {
+interface IFilterState {
   filter: string;
   range: [number, number];
   category: string;
   sorting: string;
-  dateRange: [string, string];
+  date: Date;
+  year: string;
+  month: number;
 }
 
-const initialCostState: CostState = {
+const initialCostState: ICostState = {
   costs: [],
   isLoading: false,
   error: null,
 };
-const initialFilterState: FilterState = {
+const initialFilterState: IFilterState = {
   filter: '',
   range: [0, 100],
   category: '',
   sorting: '',
-  dateRange: [null, null],
+  date: null,
+  year: '',
+  month: null,
 };
 
 export const costSlice = createSlice({
@@ -84,8 +88,14 @@ export const filterSlice = createSlice({
     changeSorting(state, action: PayloadAction<string>) {
       state.sorting = action.payload;
     },
-    changeDateRange(state, action: PayloadAction<[string, string]>) {
-      state.dateRange = action.payload;
+    changeDate(state, action: PayloadAction<Date>) {
+      state.date = action.payload;
+    },
+    changeYear(state, action: PayloadAction<string>) {
+      state.year = action.payload;
+    },
+    changeMonth(state, action: PayloadAction<number>) {
+      state.month = action.payload;
     },
   },
 });
@@ -95,7 +105,9 @@ export const { changeFilter } = filterSlice.actions;
 export const { changeRange } = filterSlice.actions;
 export const { changeCategory } = filterSlice.actions;
 export const { changeSorting } = filterSlice.actions;
-export const { changeDateRange } = filterSlice.actions;
+export const { changeDate } = filterSlice.actions;
+export const { changeYear } = filterSlice.actions;
+export const { changeMonth } = filterSlice.actions;
 
 export const costReducer = combineReducers({
   costs: costSlice.reducer,

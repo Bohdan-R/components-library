@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import shortid from 'shortid';
-import moment from 'moment';
+import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { ICategory, ICost } from '../../../interfaces/interfaces';
-import { addCategory } from '../../../store/categories/CategoriesActionCreator';
-import { addNewCost } from '../../../store/costs/CostsActionCreator';
+import shortid from 'shortid';
+
 import CostList from '../../CostList';
 import CostsFilter from '../../CostsFilter';
+import CostsStats from './CostsPageComponents/CostsStats';
 import AddCostFrom from './CostsPageComponents/AddCostFrom';
 import AddCategoryModal from './CostsPageComponents/AddCategoryModal';
 import DeleteCategoryModal from './CostsPageComponents/DeleteCategoryModal';
+
+import { addCategory } from '../../../store/categories/CategoriesActionCreator';
+import { addNewCost } from '../../../store/costs/CostsActionCreator';
+
+import { dateOptions } from '../../../utils/constants';
+import { ICategory, ICost } from '../../../interfaces/interfaces';
+
 import styles from './CostsPage.module.scss';
-import CostsStats from './CostsPageComponents/CostsStats';
 
 function CostsPage() {
   const dispatch = useAppDispatch();
@@ -42,13 +47,14 @@ function CostsPage() {
 
   const handleSubmitNewCost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const date = new Date();
 
     const newCost: ICost = {
       id: shortid.generate(),
       title,
       sum,
       category: selectedCategory,
-      date: moment().format('DD MMMM, YYYY'),
+      date: date.toLocaleString('en-US', dateOptions),
     };
     dispatch(addNewCost(newCost));
 

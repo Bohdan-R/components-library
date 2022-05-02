@@ -1,12 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-const getAllCosts = state => state.costReducer.costs.costs;
+const getAllPayments = state => state.costReducer.costs.costs;
 const getFilter = state => state.costReducer.filter;
 
 const filteredPayments = createSelector(
-  [getAllCosts, getFilter],
-  (payments, { filter, range, category, dateRange, sorting }) => {
-    const Moment = require('moment');
+  [getAllPayments, getFilter],
+  (payments, { filter, range, category, date, year, month, sorting }) => {
     let filteredPayments = payments;
 
     if (filter) {
@@ -22,10 +21,16 @@ const filteredPayments = createSelector(
       filteredPayments = filteredPayments.filter(p => p.sum >= range[0] && p.sum <= range[1]);
     }
 
-    if (dateRange[0] && dateRange[1]) {
-      filteredPayments = filteredPayments.filter(
-        p => new Date(p.date).getTime() >= dateRange[0].getTime() && new Date(p.date) <= dateRange[1].getTime(),
-      );
+    if (date) {
+      filteredPayments = filteredPayments.filter(p => new Date(p.date).getTime() === new Date(date).getTime());
+    }
+
+    if (month) {
+      filteredPayments = filteredPayments.filter(p => new Date(p.date).getMonth() + 1 === month);
+    }
+
+    if (year) {
+      filteredPayments = filteredPayments.filter(p => new Date(p.date).getFullYear() === Number(year));
     }
 
     if (sorting === 'large -> small sum') {
@@ -37,26 +42,30 @@ const filteredPayments = createSelector(
       return filteredPayments;
     }
     if (sorting === 'past -> current date') {
-      filteredPayments = filteredPayments.slice().sort((a, b) => new Moment(a.date) - new Moment(b.date));
+      filteredPayments = filteredPayments
+        .slice()
+        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
       return filteredPayments;
     }
     if (sorting === 'current -> past date') {
-      filteredPayments = filteredPayments.slice().sort((a, b) => new Moment(b.date) - new Moment(a.date));
+      filteredPayments = filteredPayments
+        .slice()
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       return filteredPayments;
     }
 
-    return filteredPayments.slice().sort((a, b) => new Moment(b.date) - new Moment(a.date));
+    return filteredPayments.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   },
 );
 
 const getMinSumOfCosts = state => {
-  const costs = getAllCosts(state);
+  const costs = getAllPayments(state);
 
   return Math.min(...costs.map(c => c.sum));
 };
 
 const getMaxSumOfCosts = state => {
-  const costs = getAllCosts(state);
+  const costs = getAllPayments(state);
 
   if (costs.length === 0) {
     return 0;
@@ -65,10 +74,17 @@ const getMaxSumOfCosts = state => {
   return Math.max(...costs.map(c => c.sum));
 };
 
+const getAllYearsOfPayments = state => {
+  const years = getAllPayments(state).map(({ date }) => new Date(date).getFullYear());
+  const uniqueYears = years.filter((year, ind, arr) => arr.indexOf(year) === ind).sort((a, b) => b - a);
+  return uniqueYears;
+};
+
 export default {
   getFilter,
-  getAllCosts,
+  getAllPayments,
   getMinSumOfCosts,
   getMaxSumOfCosts,
   filteredPayments,
+  getAllYearsOfPayments,
 };
