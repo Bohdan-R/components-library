@@ -5,22 +5,16 @@
     padding: 0;
     border: none;
     font: inherit;
-    cursor: pointer;
+    cursor: default;
     outline: none;
     background-color: transparent;
-    border-radius: 4px;
+    border-radius: 20px;
 
     &.contained {
         color: #ffffff;
-        box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-        0px 2px 2px 0px rgb(0 0 0 / 14%),
-        0px 1px 5px 0px rgb(0 0 0 / 12%);
-        transition: 250ms;
 
         &:hover {
-            box-shadow: 0px 4px 2px -3px rgb(0 0 0 / 20%),
-            0px 3px 3px 0px rgb(0 0 0 / 14%),
-            0px 2px 7px 0px rgb(0 0 0 / 12%);
+            cursor: pointer;
         }
 
         &.purple {
@@ -29,12 +23,20 @@
             &:hover {
                 background-color: $color-hover-purple;
             }
+            &.disabled {
+                background-color: $color-disabled-purple;
+                cursor: default;
+            }
         }
         &.green{
             background-color: $color-accent-green;
             transition: 250ms;
             &:hover {
                 background-color: $color-hover-green;
+            }
+            &.disabled {
+                background-color: $color-disabled-green;
+                cursor: default;
             }
         }
         &.yellow {
@@ -43,12 +45,20 @@
             &:hover {
                 background-color: $color-hover-yellow;
             }
+            &.disabled {
+                background-color: $color-disabled-yellow;
+                cursor: default;
+            }
         }
         &.blue {
             background-color: $color-accent-blue;
             transition: 250ms;
             &:hover {
                 background-color: $color-hover-blue;
+            }
+            &.disabled {
+                background-color: $color-disabled-blue;
+                cursor: default;
             }
         }
         &.orange {
@@ -57,6 +67,10 @@
             &:hover {
                 background-color: $color-hover-orange;
             }
+            &.disabled {
+                background-color: $color-disabled-orange;
+                cursor: default;
+            }
         }
         &.pink {
             background-color: $color-accent-pink;
@@ -64,22 +78,12 @@
             &:hover {
                 background-color: $color-hover-pink;
             }
-        }
-
-        &.disabled {
-            background-color: #e0e0e0;
-            color: $color-primary-text;
-
-            cursor: default;
-
-            &:hover {
-                box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-                0px 2px 2px 0px rgb(0 0 0 / 14%),
-                0px 1px 5px 0px rgb(0 0 0 / 12%);
+            &.disabled {
+                background-color: $color-disabled-pink;
+                cursor: default;
             }
         }
     }
-
     &.outlined {
         transition: 250ms;
 
@@ -166,31 +170,25 @@
 }
 
 .small {
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 7px 15px;
 }
 
 .smallLong {
-    padding: 5px 25px;
-    font-size: 14px;
+    padding: 7px 25px;
 }
 
 .medium {
-    padding: 7px 12px;
-    font-size: 16px;
+    padding: 10px 20px;
 }
 
 .mediumLong {
-    padding: 7px 27px;
-    font-size: 16px;
+    padding: 10px 30px;
 }
 
 .large {
-    padding: 10px 15px;
-    font-size: 18px;
+    padding: 13px 25px;
 }
 
 .largeLong {
-    padding: 10px 30px;
-    font-size: 18px;
+    padding: 13px 35px;
 }

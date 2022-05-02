@@ -97,7 +97,7 @@ function AddCostFrom({
         <div className={styles.buttonContainer}>
           <Button
             color="blue"
-            size="medium"
+            size="mediumLong"
             variant="contained"
             type="submit"
             label="Submit"
@@ -106,7 +106,7 @@ function AddCostFrom({
           />
           <Button
             color="blue"
-            size="medium"
+            size="mediumLong"
             variant="contained"
             type="button"
             label="Cancel"
