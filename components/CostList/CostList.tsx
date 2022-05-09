@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppSelector } from '../../hooks/redux';
+
 import CostItem from '../CostItem';
+
 import costsSelectors from '../../store/costs/CostsSelectors';
+import incomesSelectors from '../../store/income/IncomeSelectors';
+
+import { ICostIncome, ICategory } from '../../interfaces/interfaces';
+
 import styles from './CostList.module.scss';
+
+interface IList {
+  switcher: string;
+}
 
 const headerTitle = ['#', 'Name', 'Sum', 'Category', 'Date', ''];
 
-function CostList() {
+function TableList({ switcher }: IList) {
   const costs = useSelector(costsSelectors.filteredPayments);
-  const { categories } = useAppSelector(state => state.categoryReducer);
+  const incomes = useSelector(incomesSelectors.filteredIncomes);
+  const { categories: costCategories } = useAppSelector(state => state.costCategoryReducer);
+  const { categories: incomeCategories } = useAppSelector(state => state.incomeCategoryReducer);
 
-  console.log('costs', costs);
+  const [categories, setCategories] = useState<ICategory[]>(null);
+  const [list, setList] = useState<ICostIncome[]>(null);
+
+  useEffect(() => {
+    if (switcher === 'Spending') {
+      setList(costs);
+      setCategories(costCategories);
+      return;
+    }
+
+    setList(incomes);
+    setCategories(incomeCategories);
+  }, [switcher, costs, costCategories, incomes, incomeCategories]);
 
   return (
     <div className={styles.container}>
@@ -26,13 +50,20 @@ function CostList() {
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          {costs.map((cost, i) => (
-            <CostItem key={cost.id} cost={cost} number={i + 1} selectItems={categories.map(c => c.category)} />
-          ))}
+          {list &&
+            list.map((item, i) => (
+              <CostItem
+                key={item.id}
+                switcher={switcher}
+                item={item}
+                number={i + 1}
+                selectItems={categories.map(c => c.category)}
+              />
+            ))}
         </tbody>
       </table>
     </div>
   );
 }
 
-export default CostList;
+export default TableList;

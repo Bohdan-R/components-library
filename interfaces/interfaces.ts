@@ -1,4 +1,4 @@
-export interface ICost {
+export interface ICostIncome {
   id: string;
   title: string;
   sum: number | string;

@@ -10,6 +10,7 @@ import Tooltip from '../../../../Tooltip';
 import styles from './AddCostFrom.module.scss';
 
 interface AddCostFromProps {
+  formTitle: string;
   title: string;
   sum: number | string;
   selectedCategory: string;
@@ -24,6 +25,7 @@ interface AddCostFromProps {
 }
 
 function AddCostFrom({
+  formTitle,
   title,
   sum,
   selectedCategory,
@@ -40,7 +42,7 @@ function AddCostFrom({
 
   return (
     <div className={styles.formContainer}>
-      <p className={styles.formTitle}>Add payment</p>
+      <p className={styles.formTitle}>{formTitle}</p>
       <form noValidate autoComplete="off" className={styles.form} onSubmit={handleSubmitNewCost}>
         <div className={styles.inputWrap}>
           <InputField

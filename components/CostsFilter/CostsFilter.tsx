@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker';
 import classNames from 'classnames/bind';
 
 import costsSelectors from '../../store/costs/CostsSelectors';
+import incomeSelectors from '../../store/income/IncomeSelectors';
 import {
   changeFilter,
   changeCategory,
@@ -16,7 +17,7 @@ import {
   changeSorting,
   changeYear,
   changeMonth,
-} from '../../store/costs/CostsSlice';
+} from '../../store/accountingFilter/AccountingFilterSlice';
 
 import InputField from '../InputField';
 import Select from '../Select';
@@ -28,16 +29,26 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './CostsFilter.module.scss';
 
+interface IFilter {
+  switcher: string;
+}
+
 const cx = classNames.bind(styles);
 const minDistance = 50;
 
-function CostsFilter() {
+function Filter({ switcher }: IFilter) {
   const dispatch = useAppDispatch();
-  const { categories } = useAppSelector(state => state.categoryReducer);
+  const { categories: costCategories } = useAppSelector(state => state.costCategoryReducer);
+  const { categories: incomeCategories } = useAppSelector(state => state.incomeCategoryReducer);
   const { filter } = useSelector(costsSelectors.getFilter);
-  const maxValue = useSelector(costsSelectors.getMaxSumOfCosts);
+  const maxValueCosts = useSelector(costsSelectors.getMaxSumOfCosts);
+  const maxValueIncomes = useSelector(incomeSelectors.getMaxSumOfIncomes);
   const yearsOfPayments = useSelector(costsSelectors.getAllYearsOfPayments);
+  const yearsOfIncomes = useSelector(incomeSelectors.getAllYearsOfIncomes);
 
+  const [categories, setCategories] = useState<string[]>([]);
+  const [years, setYears] = useState<string[]>([]);
+  const [maxValue, setMaxValue] = useState<number>(null);
   const [rangeValue, setRangeValue] = useState<[number, number]>([0, 100]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedSorting, setSelectedSorting] = useState<string>('');
@@ -45,7 +56,31 @@ function CostsFilter() {
   const [selectedMonth, setSelectedMonth] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date>(null);
 
-  const categoriesOfPayment = categories.map(({ category }) => category);
+  useEffect(() => {
+    resetFilters();
+  }, [maxValue]);
+
+  useEffect(() => {
+    if (switcher === 'Spending') {
+      setYears(yearsOfPayments);
+      setCategories(costCategories.map(({ category }) => category));
+      setMaxValue(maxValueCosts);
+      return;
+    }
+
+    setYears(yearsOfIncomes);
+    setCategories(incomeCategories.map(({ category }) => category));
+    setMaxValue(maxValueIncomes);
+  }, [
+    switcher,
+    filter,
+    yearsOfPayments,
+    yearsOfIncomes,
+    costCategories,
+    incomeCategories,
+    maxValueIncomes,
+    maxValueCosts,
+  ]);
 
   useEffect(() => {
     if (maxValue === 0) {
@@ -53,10 +88,6 @@ function CostsFilter() {
     }
     setRangeValue([0, maxValue]);
   }, [maxValue]);
-
-  useEffect(() => {
-    resetFilters();
-  }, []);
 
   const handleSearch = (value: string) => {
     dispatch(changeFilter(value));
@@ -151,7 +182,7 @@ function CostsFilter() {
               <div className={styles.title}>Choose category</div>
               <Select
                 label="All category"
-                items={categoriesOfPayment}
+                items={categories}
                 selected={selectedCategory}
                 setSelected={setSelectedCategory}
               />
@@ -196,7 +227,7 @@ function CostsFilter() {
         </div>
         <div className={styles.filterBox}>
           <div className={styles.title}>Choose Year</div>
-          <Select label="Year" items={yearsOfPayments} selected={selectedYear} setSelected={setSelectedYear} />
+          <Select label="Year" items={years} selected={selectedYear} setSelected={setSelectedYear} />
         </div>
 
         <div className={styles.filterBox}>
@@ -208,4 +239,4 @@ function CostsFilter() {
   );
 }
 
-export default CostsFilter;
+export default Filter;

@@ -8,26 +8,28 @@ import Select from '../Select';
 import Tooltip from '../Tooltip';
 
 import { deleteCost, updateCost } from '../../store/costs/CostsActionCreator';
+import { deleteIncome, updateIncome } from '../../store/income/IncomeActionCreator';
 
-import { ICost } from '../../interfaces/interfaces';
+import { ICostIncome } from '../../interfaces/interfaces';
 import { dateOptions } from '../../utils/constants';
 import { setRuFormatDate } from '../../utils/helpers';
 
 import styles from './CostItem.module.scss';
 
 interface CostItemProps {
-  cost: ICost;
+  item: ICostIncome;
   selectItems: string[];
   number: number;
+  switcher: string;
 }
 
-function CostItem({ cost, selectItems, number }: CostItemProps) {
+function TableItem({ item, selectItems, number, switcher }: CostItemProps) {
   const dispatch = useAppDispatch();
   const [isChange, setIsChange] = useState<boolean>(false);
-  const [editCategory, setEditCategory] = useState<string>(cost.category || '');
-  const [editTitle, setEditTitle] = useState<string>(cost.title || '');
-  const [editSum, setEditSum] = useState<number | string>(cost.sum || '');
-  const [editDate, setEditDate] = useState<Date>(cost.date ? new Date(cost.date) : null);
+  const [editCategory, setEditCategory] = useState<string>(item.category || '');
+  const [editTitle, setEditTitle] = useState<string>(item.title || '');
+  const [editSum, setEditSum] = useState<number | string>(item.sum || '');
+  const [editDate, setEditDate] = useState<Date>(item.date ? new Date(item.date) : null);
 
   const handleEditTitle = (value: string) => {
     setEditTitle(value);
@@ -36,9 +38,9 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
     setEditSum(value);
   };
 
-  const handleSubmit = () => {
-    const editedCost: ICost = {
-      id: cost.id,
+  const handleUpdateCost = () => {
+    const editedCost: ICostIncome = {
+      id: item.id,
       title: editTitle,
       sum: editSum,
       category: editCategory,
@@ -46,8 +48,28 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
     };
 
     dispatch(updateCost(editedCost));
-
     handleIsChange();
+  };
+
+  const handleUpdateIncome = () => {
+    const editedIncome: ICostIncome = {
+      id: item.id,
+      title: editTitle,
+      sum: editSum,
+      category: editCategory,
+      date: editDate.toLocaleString('en-US', dateOptions),
+    };
+
+    dispatch(updateIncome(editedIncome));
+    handleIsChange();
+  };
+
+  const handleDeleteCost = (id: string) => {
+    dispatch(deleteCost(id));
+  };
+
+  const handleDeleteIncome = (id: string) => {
+    dispatch(deleteIncome(id));
   };
 
   const handleIsChange = () => {
@@ -73,7 +95,7 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
       {isChange === false ? (
         <tr className={styles.item}>
           <td className={styles.itemContent}>{number}</td>
-          {Object.entries(cost)
+          {Object.entries(item)
             .slice(1)
             .map(c => (
               <td key={c[1]} className={styles.itemContent}>
@@ -90,7 +112,12 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
                   type="button"
                   variant="delete"
                   size="medium"
-                  onClick={() => dispatch(deleteCost(cost.id))}
+                  onClick={() => {
+                    if (switcher === 'Spending') {
+                      return handleDeleteCost(item.id);
+                    }
+                    handleDeleteIncome(item.id);
+                  }}
                 />
               </Tooltip>
             </div>
@@ -130,7 +157,12 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
           <td className={styles.itemContent}>
             <div className={styles.btnBox}>
               <Tooltip label="Accept" size="medium" position="top">
-                <IconButton type="button" variant="confirm" size="medium" onClick={handleSubmit} />
+                <IconButton
+                  type="button"
+                  variant="confirm"
+                  size="medium"
+                  onClick={switcher === 'Spending' ? handleUpdateCost : handleUpdateIncome}
+                />
               </Tooltip>
               <Tooltip label="Cancel" size="medium" position="top">
                 <IconButton type="button" variant="cancel" size="medium" onClick={handleIsChange} />
@@ -143,4 +175,4 @@ function CostItem({ cost, selectItems, number }: CostItemProps) {
   );
 }
 
-export default CostItem;
+export default TableItem;

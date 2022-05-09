@@ -3,7 +3,36 @@
 .headSection {
     display: flex;
     justify-content: space-between;
+    padding-top: 40px;
 }
+
+.switcherContainer {
+    display: flex;
+    margin-top: 40px;
+
+    .switcher {
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+
+        border: 1px solid $color-accent-blue;
+        border-radius: 20px;
+
+        transition: 250ms;
+
+        &:hover {
+            background-color: $color-accent-blue;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        &.active {
+            background-color: $color-accent-blue;
+            color: #fff;
+        }
+    }
+}
+
 
 .tableSection {
     display: flex;

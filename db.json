@@ -16,7 +16,7 @@
   "profile": {
     "name": "typicode"
   },
-  "categories": [
+  "cost-categories": [
     {
       "id": "dlw4mjW8L",
       "category": "Other"
@@ -42,6 +42,16 @@
       "category": "clothes"
     }
   ],
+  "income-categories": [
+    {
+      "id": "w-uuzq_13",
+      "category": "Salary"
+    },
+    {
+      "id": "cJazVrBwV",
+      "category": "CryptoCurrency"
+    }
+  ],
   "costs": [
     {
       "id": "OzdZxCkEC",
@@ -55,13 +65,6 @@
       "title": "Milk",
       "sum": "120",
       "category": "Food",
-      "date": "10 March, 2022"
-    },
-    {
-      "id": "BOOdJhePW",
-      "title": "Ball",
-      "sum": "520",
-      "category": "Sport",
       "date": "10 March, 2022"
     },
     {
@@ -88,9 +91,9 @@
     {
       "id": "oT7FAn7no",
       "title": "PUBG",
-      "sum": "450",
+      "sum": "546",
       "category": "Games",
-      "date": "22 December, 2021"
+      "date": "December 22, 2021"
     },
     {
       "id": "fkJ-RTDcp",
@@ -126,6 +129,29 @@
       "sum": "24875",
       "category": "Other",
       "date": "May 2, 2022"
+    }
+  ],
+  "incomes": [
+    {
+      "id": "HSM38Cq-L",
+      "title": "Salary march",
+      "sum": "15500",
+      "category": "Salary",
+      "date": "May 7, 2022"
+    },
+    {
+      "id": "NJ09Yt5In",
+      "title": "adasd",
+      "sum": "465",
+      "category": "CryptoCurrency",
+      "date": "May 7, 2022"
+    },
+    {
+      "id": "mePOcObAu",
+      "title": "btc",
+      "sum": "12000",
+      "category": "CryptoCurrency",
+      "date": "May 7, 2022"
     }
   ]
 }

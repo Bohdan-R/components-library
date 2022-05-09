@@ -1,16 +1,22 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { costReducer } from './costs/CostsSlice';
-import categoryReducer from './categories/CategoriesSlice';
+import { incomeReducer } from './income/IncomeSlice';
+import costCategoryReducer from './cost-categories/CostCategoriesSlice';
+import incomeCategoryReducer from './income-categories/IncomeCategoriesSlice';
+import accountingFilterReducer from './accountingFilter/AccountingFilterSlice';
 
 const rootReducer = combineReducers({
-    costReducer,
-    categoryReducer,
+  costReducer,
+  incomeReducer,
+  costCategoryReducer,
+  incomeCategoryReducer,
+  accountingFilterReducer,
 });
 
 export const setupStore = () => {
-    return configureStore({
-        reducer: rootReducer,
-    });
+  return configureStore({
+    reducer: rootReducer,
+  });
 };
 
 export type RootState = ReturnType<typeof rootReducer>;
