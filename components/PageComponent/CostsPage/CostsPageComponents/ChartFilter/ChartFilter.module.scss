@@ -1,0 +1,83 @@
+@import '../../../../../styles/colors';
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+.border {
+    position: absolute;
+    display: block;
+    right: -40px;
+    top: 0;
+    height: 100%;
+    width: 4px;
+
+    border-radius: 10px;
+    background-color: #e0e0e0;
+}
+
+.switcherContainer {
+    grid-area: switcher;
+    margin-bottom: 40px;
+}
+
+.filterContainer {
+    grid-area: filter;
+}
+
+.buttonContainer {
+    grid-area: button;
+    position: absolute;
+    bottom: 25px;
+}
+
+.filterBox {
+    margin-bottom: 25px;
+}
+
+.title {
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+
+
+    .item {
+        display: block;
+        padding: 3px 15px;
+        margin-right: 5px;
+
+        font-size: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 15px;
+        background-color: #fff;
+
+        transition: 250ms;
+
+        &:hover {
+            border-color: $color-accent-blue;
+            cursor: pointer;
+        }
+
+        &:disabled {
+            cursor: auto;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.active {
+            border-color: $color-accent-blue;
+            background-color: $color-accent-blue;
+            color: #fff;
+        }
+    }
+}

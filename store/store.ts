@@ -3,7 +3,7 @@ import { costReducer } from './costs/CostsSlice';
 import { incomeReducer } from './income/IncomeSlice';
 import costCategoryReducer from './cost-categories/CostCategoriesSlice';
 import incomeCategoryReducer from './income-categories/IncomeCategoriesSlice';
-import accountingFilterReducer from './accountingFilter/AccountingFilterSlice';
+import { accountingFilterReducer } from './accountingFilter/AccountingFilterSlice';
 
 const rootReducer = combineReducers({
   costReducer,

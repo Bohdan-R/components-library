@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 const getAllPayments = state => state.costReducer.costs.costs;
-const getFilter = state => state.accountingFilterReducer;
+const getFilter = state => state.accountingFilterReducer.filters;
 
 const filteredPayments = createSelector(
   [getAllPayments, getFilter],

@@ -17,6 +17,7 @@ import {
   changeSorting,
   changeYear,
   changeMonth,
+  resetFilter,
 } from '../../store/accountingFilter/AccountingFilterSlice';
 
 import InputField from '../InputField';
@@ -41,6 +42,7 @@ function Filter({ switcher }: IFilter) {
   const { categories: costCategories } = useAppSelector(state => state.costCategoryReducer);
   const { categories: incomeCategories } = useAppSelector(state => state.incomeCategoryReducer);
   const { filter } = useSelector(costsSelectors.getFilter);
+  const aaaaa = useSelector(costsSelectors.getFilter);
   const maxValueCosts = useSelector(costsSelectors.getMaxSumOfCosts);
   const maxValueIncomes = useSelector(incomeSelectors.getMaxSumOfIncomes);
   const yearsOfPayments = useSelector(costsSelectors.getAllYearsOfPayments);
@@ -55,6 +57,9 @@ function Filter({ switcher }: IFilter) {
   const [selectedYear, setSelectedYear] = useState<string>('');
   const [selectedMonth, setSelectedMonth] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date>(null);
+
+  /* console.log('filter:', aaaaa);
+  console.log('maxValue:', maxValue); */
 
   useEffect(() => {
     resetFilters();
@@ -110,6 +115,9 @@ function Filter({ switcher }: IFilter) {
     const numberOfMonth = Number(selectedMonth[0]);
     return numberOfMonth;
   };
+  /* 
+  console.log('1: ', handleNumberOfMonth(selectedMonth));
+  console.log('selectedMonth', selectedMonth); */
 
   const handleApplyFilters = () => {
     dispatch(changeFilter(filter));
@@ -128,6 +136,9 @@ function Filter({ switcher }: IFilter) {
     setSelectedDate(null);
     setSelectedYear('');
     setSelectedMonth('');
+
+    /* dispatch(resetFilter());
+    dispatch(changeRange([0, maxValue])); */
 
     dispatch(changeFilter(''));
     dispatch(changeCategory(''));
@@ -193,7 +204,7 @@ function Filter({ switcher }: IFilter) {
               <Select label="Sorting by" items={sorting} selected={selectedSorting} setSelected={setSelectedSorting} />
             </div>
 
-            <div className={styles.filterBox}>
+            {/* <div className={styles.filterBox}>
               <div className={styles.title}>Choose date</div>
               <DatePicker
                 selected={selectedDate}
@@ -201,7 +212,7 @@ function Filter({ switcher }: IFilter) {
                 onChange={date => setSelectedDate(date)}
                 isClearable
               />
-            </div>
+            </div> */}
           </div>
           <div className={styles.buttonWrapper}>
             <Button

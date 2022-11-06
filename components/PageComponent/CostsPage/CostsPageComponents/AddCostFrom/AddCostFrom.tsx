@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAppSelector } from '../../../../../hooks/redux';
+
+import classNames from 'classnames/bind';
+
 import { ICategory } from '../../../../../interfaces/interfaces';
+
 import Button from '../../../../Button';
 import IconButton from '../../../../IconButton';
 import InputField from '../../../../InputField';
-import RadioButton from '../../../../RadioButton/RadioButton';
 import Select from '../../../../Select';
 import Tooltip from '../../../../Tooltip';
 
 import styles from './AddCostFrom.module.scss';
 
 interface AddCostFromProps {
-  formTitle: string;
   title: string;
   sum: number | string;
   selectedCategory: string;
   categories: ICategory[];
+  className: string;
   handleTitle(value: string): void;
   handleSum(value: string | number): void;
   setSelectedCategory(value: string): void;
@@ -24,12 +28,14 @@ interface AddCostFromProps {
   resetForm(): void;
 }
 
-function AddCostFrom({
-  formTitle,
+const cx = classNames.bind(styles);
+
+function From({
   title,
   sum,
   selectedCategory,
   categories,
+  className,
   handleTitle,
   handleSum,
   setSelectedCategory,
@@ -38,10 +44,19 @@ function AddCostFrom({
   handleIsOpenDeleteModal,
   resetForm,
 }: AddCostFromProps) {
+  const combineClasses = cx(styles.formContainer, className);
   const categoriesOptions = categories.map(({ category }) => category);
 
+  const { switcher } = useAppSelector(state => state.accountingFilterReducer.switcher);
+
+  const [formTitle, setFormTitle] = useState('');
+
+  useEffect(() => {
+    setFormTitle(`Add ${switcher}`);
+  }, [switcher]);
+
   return (
-    <div className={styles.formContainer}>
+    <div className={combineClasses}>
       <p className={styles.formTitle}>{formTitle}</p>
       <form noValidate autoComplete="off" className={styles.form} onSubmit={handleSubmitNewCost}>
         <div className={styles.inputWrap}>
@@ -71,21 +86,6 @@ function AddCostFrom({
               </Tooltip>
             </div>
           </div>
-
-          {/* <ul className={styles.radioGroup}>
-                        {categories &&
-                            categories.map(category => (
-                                <li key={category.id} className={styles.radioItem}>
-                                    <RadioButton
-                                        label={category.category}
-                                        name="costs"
-                                        color="blue"
-                                        selectedRadio={selectedCategory}
-                                        onChange={setSelectedCategory}
-                                    />
-                                </li>
-                            ))}
-                    </ul> */}
         </div>
 
         <div className={styles.selectContainer}>
@@ -122,4 +122,4 @@ function AddCostFrom({
   );
 }
 
-export default AddCostFrom;
+export default From;

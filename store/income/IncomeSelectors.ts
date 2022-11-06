@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 const getAllIncomes = state => state.incomeReducer.incomes.incomes;
-const getFilter = state => state.accountingFilterReducer;
+const getFilter = state => state.accountingFilterReducer.filters;
 
 const filteredIncomes = createSelector(
   [getAllIncomes, getFilter],

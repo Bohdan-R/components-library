@@ -18,42 +18,39 @@ interface AccordionProps {
 
 function Accordion({ items, active, setActive }: AccordionProps) {
     return (
-        <div className={styles.container}>
-            {items &&
-                items.map(({ title, content }) => (
-                    <div
-                        key={title}
-                        className={cx('accordion', {
-                            open: active === title,
-                        })}
-                    >
-                        <div
-                            className={styles.accordionHead}
-                            onClick={() => setActive(title)}
-                        >
-                            <p className={styles.title}>{title}</p>
-                            <MdOutlineKeyboardArrowDown
-                                className={cx('toggleIcon', {
-                                    open: active === title,
-                                })}
-                            />
-                        </div>
-                        <div
-                            className={cx('contentBox', {
-                                open: active === title,
-                            })}
-                        >
-                            <p
-                                className={cx('content', {
-                                    open: active === title,
-                                })}
-                            >
-                                {content}
-                            </p>
-                        </div>
-                    </div>
-                ))}
-        </div>
+      <div className={styles.container}>
+        {items &&
+          items.map(({ title, content }) => (
+            <div
+              key={title}
+              className={cx('accordion', {
+                open: active === title,
+              })}
+            >
+              <div className={styles.accordionHead} onClick={() => setActive(title)}>
+                <p className={styles.title}>{title}</p>
+                <MdOutlineKeyboardArrowDown
+                  className={cx('toggleIcon', {
+                    open: active === title,
+                  })}
+                />
+              </div>
+              <div
+                className={cx('contentBox', {
+                  open: active === title,
+                })}
+              >
+                <p
+                  className={cx('content', {
+                    open: active === title,
+                  })}
+                >
+                  {content}
+                </p>
+              </div>
+            </div>
+          ))}
+      </div>
     );
 }
 

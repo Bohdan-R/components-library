@@ -25,3 +25,45 @@
     min-width: 110px;
     max-width: 95%;
 }
+
+.calendarBox {
+    display: flex;
+}
+
+.datePicker {
+    :global(.react-datepicker__day--range-start) {
+        color: red;
+    };
+
+    :global(.react-datepicker__day--range-end) {
+        color: red;
+    }
+
+    :global(.react-datepicker__day--today) {
+        color: green;
+    }
+    /* :global(.react-datepicker__day--selected) {
+        color: black;
+        background-color: transparent;
+    } */
+    :global(.react-datepicker__day) {
+        /* display: none; */
+    }
+
+    :global(.react-datepicker__day--in-selecting-range) {
+        /* display: none; */
+        background-color: transparent;
+    }
+
+    .calendar-day {
+        color: #000;
+        display: inline-block;
+        width: 1.7rem;
+        line-height: 1.7rem;
+        text-align: center;
+        margin: 0.166rem;
+    }
+}
+
+
+

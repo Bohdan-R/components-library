@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import shortid from 'shortid';
@@ -7,6 +8,8 @@ import classNames from 'classnames/bind';
 import TableList from '../../CostList';
 import Filter from '../../CostsFilter';
 import CostsStats from './CostsPageComponents/CostsStats';
+import Chart from './CostsPageComponents/Chart';
+import ChartContainer from './CostsPageComponents/ChartContainer';
 import AddCostFrom from './CostsPageComponents/AddCostFrom';
 import AddCategoryModal from './CostsPageComponents/AddCategoryModal';
 import DeleteCategoryModal from './CostsPageComponents/DeleteCategoryModal';
@@ -18,6 +21,7 @@ import {
   addIncomeCategory,
   deleteIncomeCategory,
 } from '../../../store/income-categories/IncomeCategoriesActionCreator';
+import { changeSwitcher } from '../../../store/accountingFilter/AccountingFilterSlice';
 
 import { dateOptions } from '../../../utils/constants';
 import { ICategory, ICostIncome } from '../../../interfaces/interfaces';
@@ -30,6 +34,7 @@ function CostsPage() {
   const dispatch = useAppDispatch();
   const { categories: costCategories } = useAppSelector(state => state.costCategoryReducer);
   const { categories: incomeCategories } = useAppSelector(state => state.incomeCategoryReducer);
+  const { switcher } = useAppSelector(state => state.accountingFilterReducer.switcher);
 
   const [isOpenAddModal, setIsOpenAddModal] = useState<boolean>(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false);
@@ -37,12 +42,15 @@ function CostsPage() {
   const [sum, setSum] = useState<number | string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [addNewCategory, setAddNewCategory] = useState<string>('');
-  const [switcher, setSwitcher] = useState<string>('Spending');
 
   const switcherClassName = (name: string): string => {
     return cx('switcher', {
       active: switcher === name,
     });
+  };
+
+  const handleSetSwitcher = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    dispatch(changeSwitcher(e.currentTarget.textContent));
   };
 
   const handleIsOpenAddModal = () => {
@@ -132,24 +140,18 @@ function CostsPage() {
   };
 
   return (
-    <>
-      <div className={styles.switcherContainer}>
-        <div
-          className={switcherClassName('Spending')}
-          onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => setSwitcher(e.currentTarget.textContent)}
-        >
+    <div className={styles.container}>
+      <div className={styles.switcherSection}>
+        <div className={switcherClassName('Spending')} onClick={handleSetSwitcher}>
           Spending
         </div>
-        <div
-          className={switcherClassName('Incomes')}
-          onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => setSwitcher(e.currentTarget.textContent)}
-        >
+        <div className={switcherClassName('Incomes')} onClick={handleSetSwitcher}>
           Incomes
         </div>
       </div>
-      <div className={styles.headSection}>
+      <div className={styles.formSection}>
         <AddCostFrom
-          formTitle={switcher === 'Spending' ? 'Add spending' : 'Add income'}
+          className={styles.form}
           title={title}
           sum={sum}
           selectedCategory={selectedCategory}
@@ -162,7 +164,10 @@ function CostsPage() {
           handleIsOpenDeleteModal={handleIsOpenDeleteModal}
           resetForm={resetForm}
         />
-        <CostsStats />
+      </div>
+
+      <div className={styles.chartSection}>
+        <ChartContainer className={styles.chart} />
       </div>
 
       <div className={styles.tableSection}>
@@ -184,7 +189,7 @@ function CostsPage() {
         categories={switcher === 'Spending' ? costCategories : incomeCategories}
         deleteCategory={switcher === 'Spending' ? handleDeleteCostCategory : handleDeleteIncomeCategory}
       />
-    </>
+    </div>
   );
 }
 
